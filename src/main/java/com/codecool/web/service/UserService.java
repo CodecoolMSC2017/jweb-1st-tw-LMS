@@ -34,15 +34,13 @@ public class UserService {
 
     public boolean register(String name, String email, String password) {
         for (User user: users) {
-            if(!user.getName().equals(name)) {
+            if(user.getName().equals(name)) {
                 User newUser = new Student(generateId(), name, email, password, false, 0);
                 users.add(newUser);
-                return true;
-            } else {
                 return false;
             }
         }
-        return false;
+        return true;
     }
 
     public int generateId() {

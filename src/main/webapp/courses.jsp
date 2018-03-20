@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>lms</title>
+<title>courses</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -16,8 +16,8 @@
             <header>
                 <nav>
                     <ul>
-                        <li class="active"><a href="home">home</a></li>
-                        <li><a href="courses">courses</a></li>
+                        <li><a href="home">home</a></li>
+                        <li class="active"><a href="courses">courses</a></li>
                         <li><a href="students">students</a></li>
                         <li><a href="login">login</a></li>
                     </ul>
@@ -25,7 +25,7 @@
             </header>
         </div>
         <div class="container" id="news">
-            <h1>NEWS</h1>
+            <h1>COURSES</h1>
 
         </div>
     </div>

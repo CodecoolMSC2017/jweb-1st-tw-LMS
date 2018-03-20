@@ -2,6 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.service.UserService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +12,9 @@ import java.io.IOException;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-    private UserService userService = new UserService();
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletContext scx = request.getServletContext();
+        UserService userService = (UserService)scx.getAttribute("userService");
         String username = request.getParameter("name");
         String email = request.getParameter("mail");
         String password = request.getParameter("password");
@@ -23,6 +25,7 @@ public class RegisterServlet extends HttpServlet {
             result = "Something went wrong try again";
         }
         request.setAttribute("result", result);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

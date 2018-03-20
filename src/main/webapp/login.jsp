@@ -19,7 +19,7 @@
                         <li><a href="home">home</a></li>
                         <li><a href="courses">courses</a></li>
                         <li><a href="students">students</a></li>
-                        <li><a href="login">login</a></li>
+                        <li class="active"><a href="login">login</a></li>
                     </ul>
                 </nav>
             </header>
@@ -41,16 +41,23 @@
                     }
                 %>
             </form>
-            <form action="RegisterServlet" method="POST">
+            <form action="register" method="POST">
                 <p>Or if you not registered yet you can do it now</p>
                 <p>Register:</p>
                 <label>Name:</label>
-                <input type="text" name="account">
+                <input type="text" name="name">
                 <label>e-mail:</label>
-                <input type="text" name = "e-mail">
+                <input type="text" name = "mail">
                 <label>password:</label>
                 <input type="password" name="password">
                 <input type="submit" value="Register">
+                <%
+                    if (request.getAttribute("result") != null) {
+                %>
+                    ${result}
+                <%
+                    }
+                %>
             </form>
         </div>
     </div>
