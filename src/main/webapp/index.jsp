@@ -11,20 +11,23 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div class="container" id="header">
-		<header>
-			<nav>
-				<ul>
-				    <li><a href="home">home</a></li>
-				    <li><a href="courses">courses</a></li>
-				    <li><a href="students">students</a></li>
-				    <li><a href="login">login</a></li>
-				</ul>
-			</nav>
-		</header>
-	</div>
-	<div class="container" id="news">
+    <div class="wrapper">
+        <div class="container" id="header">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="home">home</a></li>
+                        <li><a href="courses">courses</a></li>
+                        <li><a href="students">students</a></li>
+                        <li><a href="login">login</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <div class="container" id="news">
+            <h1>NEWS</h1>
 
-	</div>
+        </div>
+    </div>
 </body>
 </html>
