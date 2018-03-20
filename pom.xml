@@ -33,6 +33,11 @@
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -64,8 +69,8 @@
                 <version>2.2</version>
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
-                    <username>admin</username>
-                    <password>admin</password>
+                    <username>MurvaiG</username>
+                    <password>murvai</password>
                 </configuration>
             </plugin>
         </plugins>
