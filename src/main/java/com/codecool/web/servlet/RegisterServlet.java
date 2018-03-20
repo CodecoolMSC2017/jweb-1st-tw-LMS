@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/register")
-public class SignUpServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
     private UserService userService = new UserService();
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("name");
