@@ -3,13 +3,13 @@ package com.codecool.web.model;
 import java.util.List;
 
 public class Courses {
-    private List<Course> courseList;
+    private List<Course> coursesList;
 
-    public Courses(List<Course> courseList) {
-        this.courseList = courseList;
+    public Courses(List<Course> coursesList) {
+        this.coursesList = coursesList;
     }
 
     public List<Course> getCourseList() {
-        return courseList;
+        return coursesList;
     }
 }
