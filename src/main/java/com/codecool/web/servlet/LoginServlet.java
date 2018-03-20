@@ -17,19 +17,24 @@ import java.util.List;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
+    public boolean checkParams(HttpServletRequest req) {
+        return req.getParameter("account") !=null && req.getParameter("pass") !=null &&
+                !req.getParameter("account").equals("") && !req.getParameter("pass").equals("");
+    }
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
         UserService userService = (UserService)scx.getAttribute("userService");
-        req.setAttribute("message", "problem");
-        if (req.getParameter("account") !=null && req.getParameter("pass") !=null && !req.getParameter("account").equals("") && !req.getParameter("pass").equals("")) {
+        String msg = "problem";
+        if (checkParams(req)) {
             if(userService.authenticateUser(req.getParameter("account"),req.getParameter("pass"))){
                 User user = userService.getUser(req.getParameter("account"));
-                //resp.sendRedirect("home");
-                req.setAttribute("message", "ok");
+                msg = "ok";
                 Cookie ck = new Cookie("uname",user.getName());
                 resp.addCookie(ck);
             }
         }
+        req.setAttribute("message", msg);
         req.getRequestDispatcher("login.jsp").forward(req,resp);
 
     }

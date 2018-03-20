@@ -1,5 +1,6 @@
 package com.codecool.web.listener;
 
+import com.codecool.web.service.CourseService;
 import com.codecool.web.service.DataContainer;
 import com.codecool.web.service.UserService;
 
@@ -16,9 +17,11 @@ public final class WebappContextListener implements ServletContextListener {
         ServletContext cntxt = sce.getServletContext();
         DataContainer dataContainer = new DataContainer();
         UserService userService = new UserService();
+        CourseService courseService = new CourseService();
 
         cntxt.setAttribute("dataContainer", dataContainer);
         cntxt.setAttribute("userService",userService);
+        cntxt.setAttribute("courseService",courseService);
 
     }
 
