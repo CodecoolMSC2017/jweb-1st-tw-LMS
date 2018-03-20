@@ -23,7 +23,7 @@
 		</header>
 	</div>
 	<div class="container" id="news">
-	
+
 	</div>
 </body>
 </html>
