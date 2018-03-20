@@ -19,4 +19,14 @@ public class UserService {
     public void addNewUser(User newUser) {
         users.add(newUser);
     }
+
+    public User getUser(String name) {
+        User loginUser = null;
+        for(User user :users) {
+            if(user.getName().equals(name)) {
+                loginUser = user;
+            }
+        }
+        return loginUser;
+    }
 }
