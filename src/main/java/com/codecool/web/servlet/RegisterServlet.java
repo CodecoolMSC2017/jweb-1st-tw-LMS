@@ -19,11 +19,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("mail");
         String password = request.getParameter("password");
         String result;
-        if(userService.register(username, email, password)) {
-            result = "Successfully registered";
-        } else {
-            result = "Something went wrong try again";
-        }
+        result = userService.register(username, email, password);
         request.setAttribute("result", result);
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
