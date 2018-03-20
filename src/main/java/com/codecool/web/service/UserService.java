@@ -29,4 +29,13 @@ public class UserService {
         }
         return loginUser;
     }
+
+    public boolean authenticateUser(String name,String password) {
+        for(User user :users) {
+            if(user.getName().equals(name) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
