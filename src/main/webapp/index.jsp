@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://use.fontawesome.com/a1403016a7.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="container" id="header">
