@@ -1,6 +1,7 @@
 package com.codecool.web.listener;
 
 import com.codecool.web.service.DataContainer;
+import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -14,8 +15,11 @@ public final class WebappContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext cntxt = sce.getServletContext();
         DataContainer dataContainer = new DataContainer();
+        UserService userService = new UserService();
 
         cntxt.setAttribute("dataContainer", dataContainer);
+        cntxt.setAttribute("userService",userService);
+
     }
 
     @Override
