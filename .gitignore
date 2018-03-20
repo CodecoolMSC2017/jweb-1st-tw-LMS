@@ -86,4 +86,3 @@ hs_err_pid*
 .editorconfig
 .idea/
 *.iml
-pom.xml
