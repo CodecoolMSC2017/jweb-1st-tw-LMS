@@ -8,7 +8,7 @@ import java.util.List;
 public class UserService {
     private List<User> users;
 
-    private UserService() {
+    public UserService() {
         users = new ArrayList<>();
     }
 
