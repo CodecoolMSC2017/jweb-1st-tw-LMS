@@ -1,9 +1,11 @@
 package com.codecool.web.service;
 
+import com.codecool.web.model.Student;
 import com.codecool.web.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class UserService {
     private List<User> users;
@@ -28,5 +30,24 @@ public class UserService {
             }
         }
         return loginUser;
+    }
+
+    public boolean register(String name, String email, String password) {
+        for (User user: users) {
+            if(!user.getName().equals(name)) {
+                User newUser = new Student(generateId(), name, email, password, false, 0);
+                users.add(newUser);
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public int generateId() {
+        Random rand = new Random();
+        int n = rand.nextInt(10000);
+        return n;
     }
 }

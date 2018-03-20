@@ -4,7 +4,7 @@ public class Student extends User {
 
     private int points;
 
-    Student(int id, String name, String email, String password, boolean permission, int points) {
+    public Student(int id, String name, String email, String password, boolean permission, int points) {
         super(id, name, email, password, permission);
         this.points = points;
     }
