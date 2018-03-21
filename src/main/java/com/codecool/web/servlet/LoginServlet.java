@@ -25,19 +25,18 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
         UserService userService = (UserService)scx.getAttribute("userService");
-        String msg = "problem";
         if (checkParams(req)) {
             if(userService.authenticateUser(req.getParameter("account"),req.getParameter("pass"))){
                 User user = userService.getUser(req.getParameter("account"));
-                msg = "ok";
                 Cookie ck = new Cookie("uname",user.getName());
                 resp.addCookie(ck);
+                req.getRequestDispatcher("home.jsp").forward(req,resp);
             }
         }
-        req.setAttribute("message", msg);
+        req.setAttribute("message", "error occured");
         req.getRequestDispatcher("login.jsp").forward(req,resp);
-
     }
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
     }
