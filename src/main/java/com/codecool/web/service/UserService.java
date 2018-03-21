@@ -71,4 +71,13 @@ public class UserService {
         }
         return false;
     }
+
+    public User getUserById(int id) {
+        for (User temp : users) {
+            if (temp.getId() == id) {
+                return temp;
+            }
+        }
+        return null;
+    }
 }
