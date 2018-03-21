@@ -24,7 +24,7 @@ public class UserService {
 
     public User getUser(String name) {
         User loginUser = null;
-        for(User user :users) {
+        for(User user: users) {
             if(user.getName().equals(name)) {
                 loginUser = user;
             }
@@ -34,18 +34,26 @@ public class UserService {
 
     public String register(String name, String email, String password) {
         String message = "";
-        for (User user: users) {
-            if(user.getName().equals(name)) {
-                message = "this name already in use";
-            } else if (user.getEmail().equals(email)) {
-                message = "this email already in use";
-            } else {
-                User newUser = new Student(generateId(), name, email, password, false, 0);
-                users.add(newUser);
-                message = "success";
+        System.out.println("userservice: name " + name + " email " + email + " pw " + password);
+        if (users.size() > 0) {
+            System.out.println(users.size());
+            for (User user: users) {
+                System.out.println(user.getName());
+                if (user.getName().equals(name)) {
+                    message = "this name already in use";
+                } else if (user.getEmail().equals(email)) {
+                    message = "this email already in use";
+                } else {
+                    User newUser = new Student(generateId(), name, email, password, false, 0);
+                    users.add(newUser);
+                    message = "success";
+                }
             }
+        } else {
+            User newUser = new Student(generateId(), name, email, password, false, 0);
+            users.add(newUser);
+            message = "success";
         }
-
         return message;
     }
 
