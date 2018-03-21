@@ -43,8 +43,14 @@ if(cookies !=null){
                 </nav>
             </header>
         </div>
-        <div class="container" id="news">
-            <h1>STUDENTS</h1>
+        <div class="container" id="users">
+            <table style="border: 1px solid;">
+               <c:forEach var="user" items="${users}">
+                   <tr>
+                   <td><c:out value="${user.name}"/></td>
+                   </tr>
+               </c:forEach>
+            </table>
 
         </div>
     </div>
