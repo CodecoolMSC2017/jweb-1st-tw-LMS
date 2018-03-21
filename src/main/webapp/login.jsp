@@ -11,6 +11,15 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<%
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+    for(Cookie cookie : cookies){
+        if(cookie.getName().equals("uname")) userName = cookie.getValue();
+    }
+}
+%>
     <div class="wrapper">
         <div class="container" id="header">
             <header>
@@ -19,13 +28,26 @@
                         <li><a href="home">home</a></li>
                         <li><a href="courses">courses</a></li>
                         <li><a href="students">students</a></li>
+                        <%
+                        if(userName == null) {
+                        %>
                         <li class="active"><a href="login">login</a></li>
+                        <%
+                        } else {
+                        %>
+                        <li class="active"><a href="logout">logout</a></li>
+                        <%
+                        }
+                        %>
                     </ul>
                 </nav>
             </header>
         </div>
+        <%
+        if(userName == null) {
+        %>
         <div class="formcontainer">
-            <h2>Welcome to the [placeholder] school</h2>
+            <h2>Welcome to the [placeholder] school <%=userName %></h2>
             <form action="login" method="POST">
                 <p>Log in</p>
                 <label>Account name:</label>
@@ -59,6 +81,13 @@
                     }
                 %>
             </form>
+            <%
+            } else {
+            %>
+                <p>you are logged in as <%=userName %></p>
+            <%
+            }
+            %>
         </div>
     </div>
 </body>
