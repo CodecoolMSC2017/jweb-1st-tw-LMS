@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService{
     private List<User> users;
 
     public UserServiceImpl() {
-        users = new ArrayList<>();
+        users = DataContainer.getInstance().getUsersList();
     }
 
     public List<User> getUsers(){
