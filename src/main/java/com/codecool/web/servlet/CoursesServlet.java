@@ -21,15 +21,15 @@ import java.util.List;
 public class CoursesServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
-        CourseServiceImpl courseServiceImpl = (CourseServiceImpl)scx.getAttribute("courseServiceImpl");
+        CourseServiceImpl courseServiceImpl = (CourseServiceImpl) scx.getAttribute("courseServiceImpl");
         List<Course> courses = courseServiceImpl.getCourses();
-        List<Course> courseList = new ArrayList<>();
+        List<Course> courseList;
         Cookie[] cks = req.getCookies();
         boolean permission = false;
-        for (Cookie ck: cks) {
+        for (Cookie ck : cks) {
             if (ck.getName().equals("uname")) {
                 List<User> users = DataContainer.getInstance().getUsersList();
-                for (User user: users) {
+                for (User user : users) {
                     if (user.getName().equals(ck.getValue())) {
                         permission = user.getPermission();
                         break;
@@ -37,10 +37,10 @@ public class CoursesServlet extends HttpServlet {
                 }
             }
         }
-        if(permission) {
+        if (permission) {
             courseList = courses;
         } else {
-            courseList = courseServiceImpl.availableCourses ();
+            courseList = courseServiceImpl.availableCourses();
         }
         if (req.getQueryString() != null) {
             String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
