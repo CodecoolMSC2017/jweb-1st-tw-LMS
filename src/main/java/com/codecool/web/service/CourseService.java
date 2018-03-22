@@ -12,5 +12,5 @@ public interface CourseService {
 
     Course getCourse(int courseid);
 
-    List<Course> availabeCourses();
+    List<Course> availableCourses();
 }

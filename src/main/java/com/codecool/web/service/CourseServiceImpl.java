@@ -29,7 +29,7 @@ public class CourseServiceImpl implements CourseService {
         return null;
     }
 
-    public List<Course> availabeCourses() {
+    public List<Course> availableCourses() {
         List<Course> result = new ArrayList<>();
         for(Course course : courses) {
             if(course.getActive()) {
