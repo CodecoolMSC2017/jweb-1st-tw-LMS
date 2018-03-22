@@ -1,7 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.Course;
-import com.codecool.web.service.CourseService;
+import com.codecool.web.service.CourseServiceImpl;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,8 +17,8 @@ import java.util.List;
 public class CoursesServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
-        CourseService courseService = (CourseService)scx.getAttribute("courseService");
-        List<Course> courses = courseService.getCourses();
+        CourseServiceImpl courseServiceImpl = (CourseServiceImpl)scx.getAttribute("courseServiceImpl");
+        List<Course> courses = courseServiceImpl.getCourses();
         if (req.getQueryString() != null) {
             String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
             String[] parameters = queryString.split("&");
