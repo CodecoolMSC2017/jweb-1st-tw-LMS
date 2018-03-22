@@ -3,13 +3,14 @@ package com.codecool.web.service;
 
 import com.codecool.web.model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataContainer {
 
     private static DataContainer instance = new DataContainer();
-    private List<User> users;
-    private List<Course> courses;
+    private List<User> users = new ArrayList<>();
+    private List<Course> courses = new ArrayList<>();
 
     public static DataContainer getInstance() {
         return instance;
