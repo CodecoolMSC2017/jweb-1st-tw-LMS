@@ -1,6 +1,8 @@
 package com.codecool.web.service;
 
+import com.codecool.web.model.Assignment;
 import com.codecool.web.model.Course;
+import com.codecool.web.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class CourseServiceImpl implements CourseService {
         courses = new ArrayList<>();
     }
 
-    public List<Course> getCourses(){
+    public List<Course> getCourses() {
         return courses;
     }
 
@@ -22,8 +24,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     public Course getCourse(int courseid) {
-        for(Course c :courses) {
-            if(c.getId() == courseid) {
+        for (Course c : courses) {
+            if (c.getId() == courseid) {
                 return c;
             }
         }
@@ -32,8 +34,8 @@ public class CourseServiceImpl implements CourseService {
 
     public List<Course> availableCourses() {
         List<Course> result = new ArrayList<>();
-        for(Course course : courses) {
-            if(course.getActive()) {
+        for (Course course : courses) {
+            if (course.getActive()) {
                 courses.add(course);
             }
         }
@@ -41,10 +43,41 @@ public class CourseServiceImpl implements CourseService {
     }
 
     public void removeCourse(int id) {
-        for(Course course:courses) {
-            if(course.getId()== id) {
+        for (Course course : courses) {
+            if (course.getId() == id) {
                 courses.remove(course);
             }
         }
+    }
+
+    public Task getTask(int courseId, int taskId) {
+        List<Task> tasks = getCourse(courseId).getTasks();
+
+        for (Task task : tasks) {
+            if (task.getId() == taskId) {
+                return task;
+            }
+        }
+        return null;
+    }
+
+    public void deleteTask(int courseId, int taskId) {
+        List<Task> tasks = getCourse(courseId).getTasks();
+        for (Task task : tasks) {
+            if (task.getId() == taskId) {
+                tasks.remove(task);
+            }
+        }
+    }
+
+    public void addTask(int courseId, String title, String description, String type) {
+        List<Task> tasks = getCourse(courseId).getTasks();
+        Task newTask = null;
+        if(type.equals("task")) {
+            newTask = new Task(title, description);
+        }else if(type.equals("assignment")) {
+            newTask = new Assignment(title, description);
+        }
+        tasks.add(newTask);
     }
 }
