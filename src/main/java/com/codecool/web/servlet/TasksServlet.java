@@ -38,6 +38,9 @@ public class TasksServlet extends HttpServlet {
                                 req.getRequestDispatcher("task.jsp").forward(req, resp);
                             } else if (param1.equals("mode")) {
                                 mode = parameter.split("=")[1];
+                            } else if (param1.equals("delete")) {
+                                courseServiceImpl.deleteTask(courseid, taskid);
+                                req.getRequestDispatcher("courses.jsp").forward(req, resp);
                             }
                         }
                         if (mode.equals("view")) {
@@ -48,7 +51,7 @@ public class TasksServlet extends HttpServlet {
                             req.getRequestDispatcher("edit.jsp").forward(req, resp);
                         }
                     } else {
-                        req.getRequestDispatcher("tasks.jsp").forward(req, resp);
+                        req.getRequestDispatcher("courses.jsp").forward(req, resp);
                     }
                 }
             }
