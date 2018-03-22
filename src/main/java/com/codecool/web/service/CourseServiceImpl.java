@@ -61,6 +61,10 @@ public class CourseServiceImpl implements CourseService {
         return null;
     }
 
+    public List<Task> getTasks(int courseId) {
+        return getCourse(courseId).getTasks();
+    }
+
     public void deleteTask(int courseId, int taskId) {
         List<Task> tasks = getCourse(courseId).getTasks();
         for (Task task : tasks) {

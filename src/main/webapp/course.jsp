@@ -44,11 +44,20 @@ if(cookies !=null){
             </header>
         </div>
         <div class="container">
-            <ul class="course">
+            <ul class="list">
+                <h2>course</h2>
                 <c:set var = "temp" scope = "session" value = "${course}"/>
                 <li>Course name: <c:out value="${temp.name}"/></li>
                 <li>Course description: <c:out value="${temp.desc}"/></li>
             </ul>
+            <ul class="list">
+                <h2>tasks</h2>
+                <c:forEach var="task" items="${tasks}">
+                <li>Course name: <c:out value="${task.title}"/></li>
+                <li>Course description: <c:out value="${task.content}"/></li>
+                </c:forEach>
+             </ul>
+
         </div>
     </div>
 </body>

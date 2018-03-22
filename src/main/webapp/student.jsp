@@ -44,21 +44,12 @@ if(cookies !=null){
             </header>
         </div>
         <div class="container" id="user">
-            <table style="border: 1px solid;">
+            <ul class="user">
                 <c:set var = "temp" scope = "session" value = "${user}"/>
-                    <tr>
-                        <td align="left">Id:</td>
-                        <td><c:out value="${temp.id}"/></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Name:</td>
-                        <td><c:out value="${temp.name}"/></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Email:</td>
-                        <td><c:out value="${temp.email}"/></td>
-                    </tr>
-            </table>
+                <li>id: <c:out value="${temp.id}"/></li>
+                <li>name: <c:out value="${temp.name}"/></li>
+                <li>email: <c:out value="${temp.email}"/></li>
+            </ul>
         </div>
     </div>
 </body>
