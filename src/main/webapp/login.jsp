@@ -67,11 +67,13 @@ if(cookies !=null){
                 <p>Or if you not registered yet you can do it now</p>
                 <p>Register:</p>
                 <label>Name:</label>
-                <input type="text" name="name">
+                <input type="text" name="name" required>
                 <label>e-mail:</label>
-                <input type="text" name = "mail">
+                <input type="text" name = "mail" required>
                 <label>password:</label>
-                <input type="password" name="password">
+                <input type="password" name="password" required>
+                <input type="radio" name="permission" value="mentor">
+                <input type="radio" name="permission" value="student" checked>
                 <input type="submit" value="Register">
                 <%
                     if (request.getAttribute("result") != null) {

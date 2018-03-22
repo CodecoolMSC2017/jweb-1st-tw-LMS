@@ -20,6 +20,13 @@ public class RegisterServlet extends HttpServlet {
                 req.getParameter("mail") != null && !req.getParameter("mail").equals("");
     }
 
+    public boolean isMentor(HttpServletRequest req) {
+        if(req.getParameter("permission").equals("mentor")){
+            return true;
+        }
+        return false;
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext scx = request.getServletContext();
         UserServiceImpl userServiceImpl = new UserServiceImpl();
@@ -29,7 +36,8 @@ public class RegisterServlet extends HttpServlet {
                 String username = request.getParameter("name");
                 String email = request.getParameter("mail");
                 String password = request.getParameter("password");
-                result = userServiceImpl.register(username, email, password);
+                result = userServiceImpl.register(username, email, password, isMentor(request));
+
                 request.setAttribute("result", result);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }else {
