@@ -45,7 +45,7 @@ if(cookies !=null){
         </div>
         <div class="container" id="user">
             <table style="border: 1px solid;">
-                <c:forEach var="temp" items="${user}">
+                <c:set var = "temp" scope = "session" value = "${user}"/>
                     <tr>
                         <td align="left">Id:</td>
                         <td><c:out value="${temp.id}"/></td>
@@ -58,11 +58,6 @@ if(cookies !=null){
                         <td align="left">Email:</td>
                         <td><c:out value="${temp.email}"/></td>
                     </tr>
-                    <tr>
-                        <td align="left">Points:</td>
-                        <td><c:out value="${temp.points}"/></td>
-                    </tr>
-                </c:forEach>
             </table>
         </div>
     </div>

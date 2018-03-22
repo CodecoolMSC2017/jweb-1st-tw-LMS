@@ -1,3 +1,12 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<title>student</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://use.fontawesome.com/a1403016a7.js"></script>
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
@@ -41,7 +50,7 @@ if(cookies !=null){
             </div>
             <form method="POST" action="newcourse">
                 <input type="text" name="title" required>
-                <textarea rows="15" cols="50" name="description" align="center"></textarea>
+                <textarea rows="15" cols="50" name="description"></textarea>
                 <button type="submit">Create</button></td>
             </form>
         </div>

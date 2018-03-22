@@ -51,7 +51,6 @@ public class CoursesServlet extends HttpServlet {
                 String param1 = parameter.split("=")[0];
                 if (param1.equals("courseid")) {
                     courseid = Integer.parseInt(parameter.split("=")[1]);
-                    req.setAttribute("course", courseServiceImpl.getCourse(courseid));
                 } else if (param1.equals("mode")) {
                     mode = parameter.split("=")[1];
                 }
@@ -61,6 +60,9 @@ public class CoursesServlet extends HttpServlet {
             } else if (mode.equals("new")) {
                 req.getRequestDispatcher("edit.jsp").forward(req, resp);
             } else if (mode.equals("edit")) {
+                System.out.println(courseid);
+                System.out.println(courseServiceImpl.getCourse(courseid).toString());
+                req.setAttribute("course", courseServiceImpl.getCourse(courseid));
                 req.getRequestDispatcher("edit.jsp").forward(req, resp);
             } else if (mode.equals("delete")) {
                 courseServiceImpl.removeCourse(courseid);

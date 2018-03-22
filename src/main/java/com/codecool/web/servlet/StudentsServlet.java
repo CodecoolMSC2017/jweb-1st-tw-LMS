@@ -27,7 +27,6 @@ public class StudentsServlet extends HttpServlet {
                     if (req.getQueryString() != null) {
                         String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
                         String[] parameters = queryString.split("&");
-                        int userid = 0;
                         for (String parameter : parameters) {
                             String param1 = parameter.split("=")[0];
                             int param2 = Integer.parseInt(parameter.split("=")[1]);
