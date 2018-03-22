@@ -44,14 +44,11 @@ if(cookies !=null){
             </header>
         </div>
         <div class="container" id="users">
-            <table style="border: 1px solid;">
+            <ul class="list">
                <c:forEach var="user" items="${users}">
-                   <tr>
-                   <td><a href='students?userid=<c:out value="${user.id}"/>'><c:out value="${user.name}"/></a></td>
-                   </tr>
+                   <li><a href='students?userid=<c:out value="${user.id}"/>'><c:out value="${user.name}"/></a></li>
                </c:forEach>
-            </table>
-
+            </ul>
         </div>
     </div>
 </body>

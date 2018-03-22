@@ -42,17 +42,15 @@ if(cookies !=null){
                     </ul>
                 </nav>
             </header>
-            <div class="editormenu">
-                <button onlick="document.execCommand('bold');"><i class="fa fa-bold"></i>
-                <button onlick="document.execCommand('italic');"><i class="fa fa-italic"></i>
-                <button onlick="document.execCommand('insertParagraph');"><i class="fa fa-paragraph"></i>
-                <button onlick="document.execCommand('justifyCenter');"><i class="fa fa-justify"></i>
+        </div>
+        <div class="container">
+            <div class="editform">
+                <form method="POST" action="newcourse">
+                    <input type="text" name="title" required>
+                    <textarea rows="15" cols="50" name="description"></textarea>
+                    <button type="submit">Create</button></td>
+                </form>
             </div>
-            <form method="POST" action="newcourse">
-                <input type="text" name="title" required>
-                <textarea rows="15" cols="50" name="description"></textarea>
-                <button type="submit">Create</button></td>
-            </form>
         </div>
     </div>
 </body>

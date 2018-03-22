@@ -45,14 +45,14 @@ if(cookies !=null){
         </div>
         <a href="courses?mode=new"><button>add new</button></a>
         <div class="container" id="courses">
-            <table style="border: 1px solid;">
+            <ul class="list">
                <c:forEach var="course" items="${courses}">
-                   <tr>
-                    <td><c:out value="${course.name}"/>
+                <li>
+                    <c:out value="${course.name}"/>
                     <a href='courses?courseid=<c:out value="${course.id}"/>&mode=view'><button>view</button></a>
                     <a href='courses?courseid=<c:out value="${course.id}"/>&mode=edit'><button>edit</button></a>
-                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a></td>
-                   </tr>
+                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a>
+                </li>
                </c:forEach>
             </table>
         </div>

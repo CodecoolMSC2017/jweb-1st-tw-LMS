@@ -24,6 +24,7 @@ public class StudentsServlet extends HttpServlet {
                     ServletContext scx = req.getServletContext();
                     UserServiceImpl userServiceImpl = new UserServiceImpl();
                     List<User> users = userServiceImpl.getUsers();
+                    if (users.size() == 0) userServiceImpl.addNewUser(new User(1, "admin", "admin@admin.com", "admin", true));
                     if (req.getQueryString() != null) {
                         String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
                         String[] parameters = queryString.split("&");

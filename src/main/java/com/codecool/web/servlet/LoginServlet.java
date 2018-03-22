@@ -28,7 +28,8 @@ public class LoginServlet extends HttpServlet {
                 User user = userServiceImpl.getUser(req.getParameter("account"));
                 Cookie ck = new Cookie("uname",user.getName());
                 resp.addCookie(ck);
-                req.getRequestDispatcher("index.jsp").forward(req,resp);
+                resp.sendRedirect("home");
+                //req.getRequestDispatcher("index.jsp").forward(req,resp);
             }
         }else {
             req.setAttribute("message", "error occured");

@@ -22,7 +22,8 @@ public class NewCourseServlet  extends HttpServlet {
         CourseServiceImpl courseServiceImpl = (CourseServiceImpl)scx.getAttribute("courseServiceImpl");
         if (checkParams(req)) {
             courseServiceImpl.addNewCourse(req.getParameter("title"), req.getParameter("description"));
-            req.getRequestDispatcher("courses.jsp").forward(req, resp);
+            resp.sendRedirect("courses");
+            //req.getRequestDispatcher("courses.jsp").forward(req, resp);
         }
     }
 }
