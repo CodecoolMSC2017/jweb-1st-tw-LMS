@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>student</title>
+<title>edit course - lms</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -45,10 +45,12 @@ if(cookies !=null){
         </div>
         <div class="container">
             <div class="editform">
-                <form method="POST" action="newcourse">
-                    <input type="text" name="title" required>
-                    <textarea rows="15" cols="50" name="description"></textarea>
-                    <button type="submit">Create</button></td>
+                <form method="POST" action="savecourse">
+                    <h2>edit course</h2>
+                    <c:set var = "temp" scope = "session" value = "${course}"/>
+                    <input type="text" name="title" value ="<c:out value="${temp.name}"/>" required>
+                    <textarea rows="15" cols="50" name="description"><c:out value="${temp.desc}"/></textarea>
+                    <button type="submit">save</button></td>
                 </form>
             </div>
         </div>

@@ -176,6 +176,7 @@ ul.user li:last-child {
 div.editform {
     width: 60%;
     height: auto;
+    margin: 0 auto;
 }
 
 div.editform form {
@@ -184,6 +185,14 @@ div.editform form {
     margin: 0 auto;
     padding: 0;
     text-align: center;
+}
+
+div.editform form h2 {
+    width: 100%;
+    padding: 5px 0;
+    margin: 0;
+    background: #888;
+    color: #fff;
 }
 
 div.editform form input, div.editform form textarea {
