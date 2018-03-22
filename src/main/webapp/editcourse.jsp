@@ -1,12 +1,3 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<title>courses - lms</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://use.fontawesome.com/a1403016a7.js"></script>
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
@@ -43,18 +34,10 @@ if(cookies !=null){
                 </nav>
             </header>
         </div>
-        <button value="add new"><a href="courses?mode=new"></a></button>
-        <div class="container" id="courses">
-            <table style="border: 1px solid;">
-               <c:forEach var="course" items="${courses}">
-                   <tr>
-                    <td><c:out value="${course.name}"/>
-                    <a href="courses?courseid=course.id&mode=edit"><button value="edit"></button></a>
-                    <a href="courses?courseid=course.id&mode=delete"><button value="delete"></button></a></td>
-                   </tr>
-               </c:forEach>
-            </table>
-        </div>
     </div>
+    <form>
+        <input type="text" name="title" required>
+        <textarea rows="25" cols="100" name="description"></textarea>
+    </form>
 </body>
 </html>
