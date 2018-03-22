@@ -102,6 +102,27 @@ nav > ul > li.active > a:hover {
     color: #fff;
 }
 
+div.container ul.course {
+    width: 80%;
+    height: auto;
+    margin: 5px auto;
+    display: flex;
+    flex-wrap; wrap;
+    border: solid 1px rgba(0,0,0,.1);
+    text-align: center;
+}
+
+ul.course li:nth-child(odd) {
+    width: 30%;
+    margin: 0;
+    padding: 5px 0;
+}
+div#course ul li:nth-child(odd) {
+    width: 70%;
+    margin: 0;
+    padding: 5px 0;
+}
+
 div.formcontainer {
     width: 100%;
     height: auto;

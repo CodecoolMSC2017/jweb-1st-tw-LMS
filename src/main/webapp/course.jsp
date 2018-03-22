@@ -43,19 +43,12 @@ if(cookies !=null){
                 </nav>
             </header>
         </div>
-        <div class="container" id="course">
-            <table style="border: 1px solid;">
-               <c:forEach var="course" items="${lessons}">
-                   <tr>
-                    <td><c:out value="${lessons.name}"/></td>
-                   </tr>
-               </c:forEach>
-               <c:forEach var="course" items="${tasks}">
-                  <tr>
-                   <td><c:out value="${tasks.name}"/></td>
-                  </tr>
-              </c:forEach>
-            </table>
+        <div class="container">
+            <ul class="course">
+                <c:set var = "temp" scope = "session" value = "${course}"/>
+                <li>Course name: <c:out value="${temp.name}"/></li>
+                <li>Course description: <c:out value="${temp.desc}"/></li>
+            </ul>
         </div>
     </div>
 </body>
