@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
-        UserServiceImpl userServiceImpl = (UserServiceImpl)scx.getAttribute("userServiceImpl");
+        UserServiceImpl userServiceImpl = new UserServiceImpl();
         if (checkParams(req)) {
             if(userServiceImpl.authenticateUser(req.getParameter("account"),req.getParameter("pass"))){
                 User user = userServiceImpl.getUser(req.getParameter("account"));
