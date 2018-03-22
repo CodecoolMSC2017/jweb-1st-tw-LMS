@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>task - lms</title>
+<title>logout</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -30,11 +30,11 @@ if(cookies !=null){
                         <%
                         if(userName == null) {
                         %>
-                        <li><a href="login">login</a></li>
+                        <li class="active"><a href="login">login</a></li>
                         <%
                         } else {
                         %>
-                        <li><a href="logout">logout</a></li>
+                        <li class="active"><a href="logout">logout</a></li>
                         <%
                         }
                         %>
@@ -42,9 +42,28 @@ if(cookies !=null){
                 </nav>
             </header>
         </div>
-        <div class="container" id="news">
-            <h1>TASK</h1>
-
+        <%
+        if(userName != null) {
+        %>
+        <div class="formcontainer">
+            <form action="logout" method="POST">
+                <p>Log out</p>
+                <input type="submit" value="Log out">
+                <%
+                    if (request.getAttribute("message") != null) {
+                %>
+                    ${message}
+                <%
+                    }
+                %>
+            </form>
+            <%
+            } else {
+            %>
+                <p>you are not logged in</p>
+            <%
+            }
+            %>
         </div>
     </div>
 </body>
