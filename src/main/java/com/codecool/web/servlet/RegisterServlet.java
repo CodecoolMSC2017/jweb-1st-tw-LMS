@@ -1,6 +1,6 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.service.UserService;
+import com.codecool.web.service.UserServiceImpl;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -22,13 +22,13 @@ public class RegisterServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext scx = request.getServletContext();
-        UserService userService = (UserService)scx.getAttribute("userService");
+        UserServiceImpl userServiceImpl = (UserServiceImpl)scx.getAttribute("userServiceImpl");
         String result;
         if (checkParams(request)) {
             String username = request.getParameter("name");
             String email = request.getParameter("mail");
             String password = request.getParameter("password");
-            result = userService.register(username, email, password);
+            result = userServiceImpl.register(username, email, password);
             request.setAttribute("result", result);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
