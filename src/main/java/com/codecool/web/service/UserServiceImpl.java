@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService {
                     message = "this name already in use";
                 } else if (user.getEmail().equals(email)) {
                     message = "this email already in use";
+                } else if (!user.getEmail().contains("@")){
+                    message = "That is not a valid e-mail";
                 } else {
                     tempUser = new User(generateId(), name, email, password, isMentor);
                     message = "success";

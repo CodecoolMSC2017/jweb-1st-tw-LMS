@@ -80,4 +80,8 @@ public class CourseServiceImpl implements CourseService {
         }
         tasks.add(newTask);
     }
+
+    public void setPublicity(){
+
+    }
 }
