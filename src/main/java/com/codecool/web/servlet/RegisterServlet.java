@@ -22,7 +22,7 @@ public class RegisterServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext scx = request.getServletContext();
-        UserServiceImpl userServiceImpl = (UserServiceImpl)scx.getAttribute("userServiceImpl");
+        UserServiceImpl userServiceImpl = new UserServiceImpl();
         String result;
         if (checkParams(request)) {
             String username = request.getParameter("name");

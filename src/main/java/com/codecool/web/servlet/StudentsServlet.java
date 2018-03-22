@@ -22,7 +22,7 @@ public class StudentsServlet extends HttpServlet {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("uname")) {
                     ServletContext scx = req.getServletContext();
-                    UserServiceImpl userServiceImpl = (UserServiceImpl) scx.getAttribute("userServiceImpl");
+                    UserServiceImpl userServiceImpl = new UserServiceImpl();
                     List<User> users = userServiceImpl.getUsers();
                     if (req.getQueryString() != null) {
                         String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
