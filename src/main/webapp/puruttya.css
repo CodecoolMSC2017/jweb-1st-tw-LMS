@@ -12,6 +12,20 @@ html, body {
 p, a, h1, h2, nav, textarea {
 	font-family: 'Courier', 'sans-serif';
 	font-size: 20px;
+	font-weight: 700;
+}
+
+button {
+    background: black;
+    color: red;
+    border: none;
+    font-size: 20px;
+    padding: 5px 0;
+    width: 150px;
+}
+
+button:hover {
+    color: white;
 }
 
 i {
@@ -42,6 +56,7 @@ header {
 	flex-wrap: wrap;
 	margin: 0 auto;
 	position: relative;
+	border-bottom: solid 3px #000;
 }
 
 header > nav {
@@ -53,11 +68,12 @@ header > nav {
 
 div.wrapper {
     width: 90%;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     margin: 0 auto;
     background: #fff;
-    border-left: solid 1px rgba(0,0,0,.2);
-    border-right: solid 1px rgba(0,0,0,.2);
+    border-left: solid 1px rgba(0,0,0,1);
+    border-right: solid 1px rgba(0,0,0,1);
 }
 
 nav > ul {
@@ -67,7 +83,7 @@ nav > ul {
 	flex-wrap: wrap;
 	padding: 5px 0;
 	margin: 0;
-	border-bottom: solid 1px #888;
+	border-bottom: solid 1px #0;
 }
 
 nav > ul > li {
@@ -81,12 +97,17 @@ nav > ul > li {
 	-webkit-transition: all 1s ease;
 }
 
+nav ul li img {
+    width: auto;
+    height: 35px;
+}
+
 nav > ul > li.active {
-    background: #336699;
+    background: #000;
 }
 
 nav > ul > li.active a {
-    color: #fff;
+    color: red;
 }
 
 nav > ul > li > a {
@@ -95,7 +116,7 @@ nav > ul > li > a {
 }
 
 nav > ul > li > a:hover {
-    color: #336699;
+    color: red;
 }
 
 nav > ul > li.active > a:hover {
@@ -109,7 +130,7 @@ div.container ul.course {
     padding: 0;
     display: flex;
     flex-wrap; wrap;
-    border: solid 1px rgba(0,0,0,.1);
+    border: solid 1px rgba(0,0,0,1);
     text-align: center;
 }
 
@@ -117,7 +138,7 @@ ul.course li:nth-child(odd) {
     width: 30%;
     margin: 0;
     padding: 5px 0;
-    border-right: solid 1px rgba(0,0,0,.1);
+    border-right: solid 1px rgba(0,0,0,1);
 }
 ul.course li:nth-child(even) {
     width: calc(70% - 1px);
@@ -130,23 +151,23 @@ ul.list {
     width: 80%;
     height: auto;
     margin: 5px auto;
-    padding: 5px 0;
+    padding: 0;
     text-align: center;
-    border: solid 1px rgba(0,0,0,.1);
+    border: solid 1px rgba(0,0,0,1);
 }
 
 ul.list li {
     width: 100%;
     margin: 0;
     padding: 5px 0;
-    border-bottom: solid 1px rgba(0,0,0,.1);
+    border-bottom: solid 1px rgba(0,0,0,1);
 }
 
 ul.list h2 {
     width: 100%;
     margin: 0;
     padding: 5px 0;
-    background: #888;
+    background: #000;
     color: #fff;
 }
 
@@ -158,7 +179,7 @@ ul.user {
     width: 50%;
     margin: 5px auto;
     padding: 0;
-    border: solid 1px rgba(0,0,0,.1);
+    border: solid 1px rgba(0,0,0,1);
 }
 
 ul.user li {
@@ -166,7 +187,7 @@ ul.user li {
     margin: 0;
     padding: 5px 0;
     text-align: center;
-    border-bottom: solid 1px rgba(0,0,0,.1);
+    border-bottom: solid 1px rgba(0,0,0,1);
 }
 
 ul.user li:last-child {
@@ -181,7 +202,7 @@ div.editform {
 
 div.editform form {
     width: 100%;
-    border: solid 1px rgba(0,0,0,.1);
+    border: solid 1px rgba(0,0,0,1);
     margin: 0 auto;
     padding: 0;
     text-align: center;
@@ -199,7 +220,7 @@ div.editform form input, div.editform form textarea {
     width: 90%;
     margin: 5px auto;
     padding: 5px 0;
-    border: solid 1px #336699;
+    border: solid 1px red;
 }
 
 div.formcontainer {
@@ -218,7 +239,7 @@ div.formcontainer h2 {
 div.formcontainer form {
     width: 40%;
     margin: 0 auto;
-    border: solid 1px #888;
+    border: solid 1px red;
     text-align: center;
 }
 
@@ -235,15 +256,18 @@ div#news {
     margin: 10px auto 0 auto;
     padding: 0 0 5px 0;
     text-align: center;
-    border: solid 1px #888;
-    border-radius: 5px;
+    border: solid 1px #000;
+}
+
+div#news img {
+    width: 140px;
+    height: 140px;
 }
 
 div#news h1 {
     width: 100%;
-    background: #888;
+    background: #000;
     margin: 0;
     padding: 5px 0;
-    border-radius: 5px;
-    color: #fff
+    color: red;
 }

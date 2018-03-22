@@ -11,6 +11,6 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 }
