@@ -25,12 +25,16 @@ public class RegisterServlet extends HttpServlet {
         UserServiceImpl userServiceImpl = new UserServiceImpl();
         String result;
         if (checkParams(request)) {
-            String username = request.getParameter("name");
-            String email = request.getParameter("mail");
-            String password = request.getParameter("password");
-            result = userServiceImpl.register(username, email, password);
-            request.setAttribute("result", result);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            if(!userServiceImpl.authenticateUser(request.getParameter("name"),request.getParameter("password"))) {
+                String username = request.getParameter("name");
+                String email = request.getParameter("mail");
+                String password = request.getParameter("password");
+                result = userServiceImpl.register(username, email, password);
+                request.setAttribute("result", result);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }else {
+                result = "User " + request.getParameter("name") +" is already exists!";
+            }
         } else {
             result = "please fill every fields";
         }
