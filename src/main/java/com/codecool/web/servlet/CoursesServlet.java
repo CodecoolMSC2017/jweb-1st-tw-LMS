@@ -40,7 +40,7 @@ public class CoursesServlet extends HttpServlet {
         if(permission) {
             courseList = courses;
         } else {
-            courseList = courseServiceImpl.availabeCourses();
+            courseList = courseServiceImpl.availableCourses();
         }
         if (req.getQueryString() != null) {
             String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
