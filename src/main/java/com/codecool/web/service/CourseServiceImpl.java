@@ -36,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
         List<Course> result = new ArrayList<>();
         for (Course course : courses) {
             if (course.getActive()) {
-                courses.add(course);
+                result.add(course);
             }
         }
         return result;
