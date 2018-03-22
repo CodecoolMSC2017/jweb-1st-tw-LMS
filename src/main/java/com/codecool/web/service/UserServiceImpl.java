@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private List<User> users;
 
     public UserServiceImpl() {
         users = DataContainer.getInstance().getUsersList();
     }
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return users;
     }
 
@@ -24,8 +24,8 @@ public class UserServiceImpl implements UserService{
 
     public User getUser(String name) {
         User loginUser = null;
-        for(User user: users) {
-            if(user.getName().equals(name)) {
+        for (User user : users) {
+            if (user.getName().equals(name)) {
                 loginUser = user;
             }
         }
@@ -37,18 +37,19 @@ public class UserServiceImpl implements UserService{
         System.out.println("userservice: name " + name + " email " + email + " pw " + password);
         if (users.size() > 0) {
             System.out.println(users.size());
-            for (User user: users) {
+            User tempUser = new Student(0,"","","",false,0);
+            for (User user : users) {
                 System.out.println(user.getName());
                 if (user.getName().equals(name)) {
                     message = "this name already in use";
                 } else if (user.getEmail().equals(email)) {
                     message = "this email already in use";
                 } else {
-                    User newUser = new Student(generateId(), name, email, password, false, 0);
-                    users.add(newUser);
+                    tempUser = new Student(generateId(), name, email, password, false, 0);
                     message = "success";
                 }
             }
+            users.add(tempUser);
         } else {
             User newUser = new Student(generateId(), name, email, password, false, 0);
             users.add(newUser);
@@ -66,9 +67,9 @@ public class UserServiceImpl implements UserService{
         return n;
     }
 
-    public boolean authenticateUser(String name,String password) {
-        for(User user :users) {
-            if(user.getName().equals(name) && user.getPassword().equals(password)) {
+    public boolean authenticateUser(String name, String password) {
+        for (User user : users) {
+            if (user.getName().equals(name) && user.getPassword().equals(password)) {
                 return true;
             }
         }
