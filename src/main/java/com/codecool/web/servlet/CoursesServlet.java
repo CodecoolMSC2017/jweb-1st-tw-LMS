@@ -59,9 +59,9 @@ public class CoursesServlet extends HttpServlet {
             if (mode.equals("view")) {
                 req.getRequestDispatcher("course.jsp").forward(req, resp);
             } else if (mode.equals("new")) {
-                req.getRequestDispatcher("editcourse.jsp").forward(req, resp);
+                req.getRequestDispatcher("edit.jsp").forward(req, resp);
             } else if (mode.equals("edit")) {
-                req.getRequestDispatcher("editcourse.jsp").forward(req, resp);
+                req.getRequestDispatcher("edit.jsp").forward(req, resp);
             } else if (mode.equals("delete")) {
                 courseServiceImpl.removeCourse(courseid);
                 req.getRequestDispatcher("courses.jsp").forward(req, resp);
