@@ -30,12 +30,12 @@ public class UserServiceImpl implements UserService {
         return loginUser;
     }
 
-    public String register(String name, String email, String password) {
+    public String register(String name, String email, String password, boolean isMentor) {
         String message = "";
         System.out.println("userservice: name " + name + " email " + email + " pw " + password);
         if (users.size() > 0) {
             System.out.println(users.size());
-            User tempUser = new User(0,"","","",false);
+            User tempUser = new User(0,"","","",isMentor);
             for (User user : users) {
                 System.out.println(user.getName());
                 if (user.getName().equals(name)) {
@@ -43,13 +43,13 @@ public class UserServiceImpl implements UserService {
                 } else if (user.getEmail().equals(email)) {
                     message = "this email already in use";
                 } else {
-                    tempUser = new User(generateId(), name, email, password, false);
+                    tempUser = new User(generateId(), name, email, password, isMentor);
                     message = "success";
                 }
             }
             users.add(tempUser);
         } else {
-            User newUser = new User(generateId(), name, email, password, false);
+            User newUser = new User(generateId(), name, email, password, isMentor);
             users.add(newUser);
             message = "success";
         }

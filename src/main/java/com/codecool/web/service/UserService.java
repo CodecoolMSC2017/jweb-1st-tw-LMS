@@ -13,7 +13,7 @@ public interface UserService {
 
     User getUser(String name);
 
-    String register(String name, String email, String password);
+    String register(String name, String email, String password, boolean isMentor);
 
     int generateId();
 
