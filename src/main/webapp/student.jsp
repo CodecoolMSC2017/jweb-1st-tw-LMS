@@ -45,22 +45,24 @@ if(cookies !=null){
         </div>
         <div class="container" id="user">
             <table style="border: 1px solid;">
-                <tr>
-                    <td align="left">Id:</td>
-                    <td><c:out value="${user.id}"/></td>
-                </tr>
-                <tr>
-                    <td align="left">Name:</td>
-                    <td><c:out value="${user.name}"/></td>
-                </tr>
-                <tr>
-                    <td align="left">Email:</td>
-                    <td><c:out value="${user.email}"/></td>
-                </tr>
-                <tr>
-                    <td align="left">Points:</td>
-                    <td><c:out value="${user.points}"/></td>
-                </tr>
+                <c:forEach var="temp" items="${user}">
+                    <tr>
+                        <td align="left">Id:</td>
+                        <td><c:out value="${temp.id}"/></td>
+                    </tr>
+                    <tr>
+                        <td align="left">Name:</td>
+                        <td><c:out value="${temp.name}"/></td>
+                    </tr>
+                    <tr>
+                        <td align="left">Email:</td>
+                        <td><c:out value="${temp.email}"/></td>
+                    </tr>
+                    <tr>
+                        <td align="left">Points:</td>
+                        <td><c:out value="${temp.points}"/></td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
     </div>
