@@ -53,8 +53,8 @@ if(cookies !=null){
             <ul class="list">
                 <h2>tasks</h2>
                 <c:forEach var="task" items="${tasks}">
-                <li>Course name: <c:out value="${task.title}"/></li>
-                <li>Course description: <c:out value="${task.content}"/></li>
+                <li>Task name: <c:out value="${task.title}"/></li>
+                <li>Task description: <c:out value="${task.content}"/></li>
                 </c:forEach>
              </ul>
 
