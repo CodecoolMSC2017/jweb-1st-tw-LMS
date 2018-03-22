@@ -16,8 +16,9 @@ public class CourseServiceImpl implements CourseService {
         return courses;
     }
 
-    public void addNewCourse(Course newCourse) {
-        courses.add(newCourse);
+    public void addNewCourse(String title, String description) {
+        Course course = new Course(title, description);
+        courses.add(course);
     }
 
     public Course getCourse(int courseid) {
