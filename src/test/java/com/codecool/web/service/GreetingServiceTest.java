@@ -1,6 +1,5 @@
 package com.codecool.web.service;
 
-import com.codecool.web.model.Greeting;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

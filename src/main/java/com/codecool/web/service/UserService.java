@@ -1,10 +1,8 @@
 package com.codecool.web.service;
 
-import com.codecool.web.model.Student;
 import com.codecool.web.model.User;
 
 import java.util.List;
-import java.util.Random;
 
 public interface UserService {
 

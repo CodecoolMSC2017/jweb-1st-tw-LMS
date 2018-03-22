@@ -1,9 +1,7 @@
 package com.codecool.web.service;
 
-import com.codecool.web.model.Student;
 import com.codecool.web.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -37,7 +35,7 @@ public class UserServiceImpl implements UserService {
         System.out.println("userservice: name " + name + " email " + email + " pw " + password);
         if (users.size() > 0) {
             System.out.println(users.size());
-            User tempUser = new Student(0,"","","",false,0);
+            User tempUser = new User(0,"","","",false);
             for (User user : users) {
                 System.out.println(user.getName());
                 if (user.getName().equals(name)) {
@@ -45,13 +43,13 @@ public class UserServiceImpl implements UserService {
                 } else if (user.getEmail().equals(email)) {
                     message = "this email already in use";
                 } else {
-                    tempUser = new Student(generateId(), name, email, password, false, 0);
+                    tempUser = new User(generateId(), name, email, password, false);
                     message = "success";
                 }
             }
             users.add(tempUser);
         } else {
-            User newUser = new Student(generateId(), name, email, password, false, 0);
+            User newUser = new User(generateId(), name, email, password, false);
             users.add(newUser);
             message = "success";
         }
