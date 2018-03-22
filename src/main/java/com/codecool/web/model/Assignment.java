@@ -4,7 +4,7 @@ public class Assignment extends Task {
 
     private String submission;
 
-    Assignment(String title, String content) {
+    public Assignment(String title, String content) {
         super(title, content);
     }
 
