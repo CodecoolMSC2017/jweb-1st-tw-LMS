@@ -60,6 +60,9 @@ public class UserServiceImpl implements UserService{
     public int generateId() {
         Random rand = new Random();
         int n = rand.nextInt(10000);
+        while (users.contains(n)) {
+            n = rand.nextInt(10000);
+        }
         return n;
     }
 
