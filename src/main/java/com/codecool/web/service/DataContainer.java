@@ -1,16 +1,22 @@
 package com.codecool.web.service;
 
 
-import com.codecool.web.model.Courses;
-import com.codecool.web.model.Mentor;
-import com.codecool.web.model.Student;
-import com.codecool.web.model.User;
+import com.codecool.web.model.*;
 
 import java.util.List;
 
 public class DataContainer {
+
+    private static DataContainer instance = new DataContainer();
     private List<User> users;
-    private List<Courses> coursesList;
+    private List<Course> courses;
+
+    public static DataContainer getInstance() {
+        return instance;
+    }
+
+    private DataContainer() {
+    }
 
     public List<User> getUsersList() {
         return users;
@@ -21,14 +27,13 @@ public class DataContainer {
     }
 
 
-    public List<Courses> getCoursesList() {
-        return coursesList;
+    public List<Course> getCoursesList() {
+        return courses;
     }
 
 
-    public void addCourse(Courses courses) {
-        coursesList.add(courses);
+    public void addCourse(Course course) {
+        courses.add(course);
     }
-
 
 }
