@@ -5,11 +5,13 @@ import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebServlet("/logout")
 public class LogoutServlet {
 
     public boolean checkParams(HttpServletRequest req) {
@@ -18,23 +20,15 @@ public class LogoutServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ServletContext scx = req.getServletContext();
-        UserService userService = (UserService)scx.getAttribute("userService");
-        if (checkParams(req)) {
-            if(userService.authenticateUser(req.getParameter("account"),req.getParameter("pass"))){
-                Cookie[] cookies = req.getCookies();
-                for (Cookie ck: cookies) {
-                    if (ck.getName().equals("uname")) {
-                        ck.setMaxAge(0);
-                        resp.addCookie(ck);
-                        break;
-                    }
-                }
-                req.getRequestDispatcher("home.jsp").forward(req,resp);
+        Cookie[] cookies = req.getCookies();
+        for (Cookie ck: cookies) {
+            if (ck.getName().equals("uname")) {
+                ck.setMaxAge(0);
+                resp.addCookie(ck);
+                break;
             }
         }
-        req.setAttribute("message", "error occured");
-        req.getRequestDispatcher("login.jsp").forward(req,resp);
+        req.getRequestDispatcher("home.jsp").forward(req,resp);
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
