@@ -20,7 +20,7 @@ public class LogoutServlet extends HttpServlet {
                 break;
             }
         }
-        req.getRequestDispatcher("home.jsp").forward(req,resp);
+        req.getRequestDispatcher("index.jsp").forward(req,resp);
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
