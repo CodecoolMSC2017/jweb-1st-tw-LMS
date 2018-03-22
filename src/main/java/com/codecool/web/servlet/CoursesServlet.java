@@ -40,7 +40,7 @@ public class CoursesServlet extends HttpServlet {
         if(permission) {
             courseList = courses;
         } else {
-            courseList = courseServiceImpl.availableCourses();
+            courseList = courseServiceImpl.availabeCourses();
         }
         if (req.getQueryString() != null) {
             String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
@@ -50,8 +50,7 @@ public class CoursesServlet extends HttpServlet {
                 String param1 = parameter.split("=")[0];
                 int param2 = Integer.parseInt(parameter.split("=")[1]);
                 if (param1.equals("courseid")) {
-                    courseid = param2;
-                    req.setAttribute("courseid", courseid);
+                    req.setAttribute("course", courseServiceImpl.getCourse(param2));
                     req.getRequestDispatcher("course.jsp").forward(req, resp);
                 }
             }
