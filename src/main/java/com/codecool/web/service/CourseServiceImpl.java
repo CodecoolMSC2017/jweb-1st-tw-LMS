@@ -28,4 +28,15 @@ public class CourseServiceImpl implements CourseService {
         }
         return null;
     }
+
+    public List<Course> availabeCourses() {
+        List<Course> result = new ArrayList<>();
+        for(Course course : courses) {
+            if(course.getActive()) {
+                courses.add(course);
+            }
+        }
+        return result;
+    }
+
 }

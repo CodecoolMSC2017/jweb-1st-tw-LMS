@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface CourseService {
 
-    public List<Course> getCourses();
+    List<Course> getCourses();
 
-    public void addNewCourse(Course newCourse);
+    void addNewCourse(Course newCourse);
 
-    public Course getCourse(int courseid);
+    Course getCourse(int courseid);
+
+    List<Course> availabeCourses();
 }

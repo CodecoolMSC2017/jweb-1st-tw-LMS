@@ -23,6 +23,15 @@ public class DataContainer {
         return users;
     }
 
+    public User getUser(String name) {
+        for(User user : users) {
+            if(user.getName().equals(name)){
+                return user;
+            }
+        }
+        return null;
+    }
+
     public void addUser(User user) {
         users.add(user);
     }

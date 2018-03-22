@@ -1,5 +1,6 @@
 package com.codecool.web.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -7,15 +8,15 @@ public class Course {
     private int id;
     private String name;
     private String desc;
+    boolean isActive;
     private List<Task> tasks;
-    private List<Lesson> lessons;
 
-    public Course(String name, String desc, List<Task> tasks, List<Lesson> lessons) {
+    public Course(String name, String desc) {
         this.id = new Random().nextInt(100000);
         this.name = name;
         this.desc = desc;
-        this.tasks = tasks;
-        this.lessons = lessons;
+        this.isActive = false;
+        this.tasks = new ArrayList<>();
     }
 
     public int getId() { return id; }
@@ -28,15 +29,27 @@ public class Course {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void addNewTask(Task task) {
+        tasks.add(task);
     }
 
-    public List<Lesson> getLessons() {
-        return lessons;
+    public void deleteTask(String title) {
+        for(Task task : tasks) {
+            if(task.getTitle().equals(title)) {
+                tasks.remove(task);
+            }
+        }
     }
 
-    public void setLessons(List<Lesson> lessons) {
-        this.lessons = lessons;
+    public boolean getActive() {
+        return isActive;
     }
+
+    public void setActivity() {
+        if(getActive()) {
+            isActive = false;
+        }
+        isActive = true;
+    }
+
 }
