@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet("/newcourse")
 public class NewCourseServlet  extends HttpServlet {
     public boolean checkParams(HttpServletRequest req) {
-        return req.getParameter("title") !=null && req.getParameter("desciption") !=null &&
+        return req.getParameter("title") !=null && req.getParameter("description") !=null &&
                 !req.getParameter("description").equals("") && !req.getParameter("title").equals("");
     }
 

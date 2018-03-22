@@ -49,8 +49,9 @@ if(cookies !=null){
                <c:forEach var="course" items="${courses}">
                    <tr>
                     <td><c:out value="${course.name}"/>
-                    <a href="courses?courseid=course.id&mode=edit"><button>edit</button></a>
-                    <a href="courses?courseid=course.id&mode=delete"><button>delete</button></a></td>
+                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=view'><button>view</button></a>
+                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=edit'><button>edit</button></a>
+                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a></td>
                    </tr>
                </c:forEach>
             </table>

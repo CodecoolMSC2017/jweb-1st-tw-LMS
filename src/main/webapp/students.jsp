@@ -43,12 +43,11 @@ if(cookies !=null){
                 </nav>
             </header>
         </div>
-        <a href="student.jsp"><button value="profile">Profile</button></a>
         <div class="container" id="users">
             <table style="border: 1px solid;">
                <c:forEach var="user" items="${users}">
                    <tr>
-                   <td><c:out value="${user.name}"/></td>
+                   <td><a href='students?userid=<c:out value="${user.id}"/>'><c:out value="${user.name}"/></a></td>
                    </tr>
                </c:forEach>
             </table>
