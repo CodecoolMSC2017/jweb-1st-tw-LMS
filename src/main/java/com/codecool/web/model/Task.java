@@ -6,10 +6,10 @@ public class Task {
     private String content;
     private Boolean isActive;
 
-    Task (String title, String content, Boolean isActive) {
+    Task (String title, String content) {
         this.title = title;
         this.content = content;
-        this.isActive = isActive;
+        this.isActive = false;
     }
 
     public String getContent() {
@@ -22,5 +22,12 @@ public class Task {
 
     public Boolean getActive() {
         return isActive;
+    }
+
+    public void setActivity() {
+        if(getActive()) {
+            isActive = false;
+        }
+        isActive = true;
     }
 }
