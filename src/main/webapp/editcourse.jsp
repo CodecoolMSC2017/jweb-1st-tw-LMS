@@ -33,11 +33,12 @@ if(cookies !=null){
                     </ul>
                 </nav>
             </header>
+            <form method="POST" action="">
+                <input type="text" name="title" required>
+                <textarea rows="15" cols="50" name="description" align="center"></textarea>
+                <button type="submit">Create</button></td>
+            </form>
         </div>
     </div>
-    <form>
-        <input type="text" name="title" required>
-        <textarea rows="25" cols="100" name="description"></textarea>
-    </form>
 </body>
 </html>
