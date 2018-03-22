@@ -46,13 +46,23 @@ public class CoursesServlet extends HttpServlet {
             String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
             String[] parameters = queryString.split("&");
             int courseid = 0;
+            String mode = "view";
             for (String parameter : parameters) {
                 String param1 = parameter.split("=")[0];
-                int param2 = Integer.parseInt(parameter.split("=")[1]);
                 if (param1.equals("courseid")) {
-                    req.setAttribute("course", courseServiceImpl.getCourse(param2));
-                    req.getRequestDispatcher("course.jsp").forward(req, resp);
+                    courseid = Integer.parseInt(parameter.split("=")[1]);
+                    req.setAttribute("course", courseServiceImpl.getCourse(courseid);
+                } else if (param1.equals("mode")) {
+                    mode = parameter.split("=")[1];
                 }
+            }
+            if (mode.equals("view")) {
+                req.getRequestDispatcher("course.jsp").forward(req, resp);
+            } else if (mode.equals("edit")) {
+                req.getRequestDispatcher("editcourse.jsp").forward(req, resp);
+            } else if (mode.equals("delete")) {
+                courseServiceImpl.removeCourse(courseid);
+                req.getRequestDispatcher("courses.jsp").forward(req, resp);
             }
         }
         req.setAttribute("courses", courseList);
