@@ -39,4 +39,11 @@ public class CourseServiceImpl implements CourseService {
         return result;
     }
 
+    public void removeCourse(int id) {
+        for(Course course:courses) {
+            if(course.getId()== id) {
+                courses.remove(course);
+            }
+        }
+    }
 }
