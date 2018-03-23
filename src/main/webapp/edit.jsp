@@ -50,19 +50,19 @@ if(cookies !=null){
                 <c:choose>
                 <c:when test="${m.equals('new')}">
                 <form method="POST" action="newcourse">
-                    <h2>edit course</h2>
-                    <c:set var = "temp" scope = "session" value = "${course}"/>
-                    <input type="text" name="title" value ="<c:out value="${temp.name}"/>" required>
-                    <textarea rows="15" cols="50" name="description"><c:out value="${temp.desc}"/></textarea>
-                    <button type="submit">save</button></td>
+                    <h2>newcourse</h2>
+                    <input type="text" name="title" value="course name"required>
+                    <textarea rows="15" cols="50" name="description">course description</textarea>
+                    <button type="submit">save</button>
                 </form>
                 </c:when>
                 <c:otherwise>
                 <form method="POST" action="savecourse">
                     <h2>edit course</h2>
-                    <input type="text" name="title" value="course name"required>
-                    <textarea rows="15" cols="50" name="description">course description</textarea>
-                    <button type="submit">save</button></td>
+                    <c:set var = "temp" scope = "session" value = "${course}"/>
+                    <input type="text" name="title" value ="<c:out value="${temp.name}"/>" required>
+                    <textarea rows="15" cols="50" name="description"><c:out value="${temp.desc}"/></textarea>
+                    <button type="submit">save</button>
                 </form>
                 </c:otherwise>
                 </c:choose>
