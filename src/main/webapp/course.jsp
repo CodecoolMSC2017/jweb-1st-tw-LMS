@@ -28,7 +28,7 @@ if(cookies !=null){
                         <li><img src="logo.png"></li>
                         <li><a href="home">home</a></li>
                         <li class="active"><a href="courses">courses</a></li>
-                        <li><a href="students">students</a></li>
+                        <li><a href="users">users</a></li>
                         <%
                         if(userName == null) {
                         %>

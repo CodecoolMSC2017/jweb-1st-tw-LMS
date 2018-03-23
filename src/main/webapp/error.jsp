@@ -27,7 +27,7 @@ if(cookies !=null){
                     <ul>
                         <li class="active"><a href="home">home</a></li>
                         <li><a href="courses">courses</a></li>
-                        <li><a href="students">students</a></li>
+                        <li><a href="users">users</a></li>
                         <%
                         if(userName == null) {
                         %>

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.List;
 
-@WebServlet("/students")
+@WebServlet("/users")
 public class StudentsServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
