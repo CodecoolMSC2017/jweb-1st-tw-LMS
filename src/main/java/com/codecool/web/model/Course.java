@@ -19,11 +19,17 @@ public class Course {
         this.tasks = new ArrayList<>();
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getDesc() { return desc; }
+    public String getDesc() {
+        return desc;
+    }
 
     public List<Task> getTasks() {
         return tasks;
@@ -34,8 +40,8 @@ public class Course {
     }
 
     public void deleteTask(String title) {
-        for(Task task : tasks) {
-            if(task.getTitle().equals(title)) {
+        for (Task task : tasks) {
+            if (task.getTitle().equals(title)) {
                 tasks.remove(task);
             }
         }
@@ -46,10 +52,11 @@ public class Course {
     }
 
     public void setActivity() {
-        if(getActive()) {
+        if (getActive()) {
             isActive = false;
+        } else {
+            isActive = true;
         }
-        isActive = true;
     }
 
 }

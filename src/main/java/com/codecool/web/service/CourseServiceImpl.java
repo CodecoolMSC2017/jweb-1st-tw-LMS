@@ -85,7 +85,8 @@ public class CourseServiceImpl implements CourseService {
         tasks.add(newTask);
     }
 
-    public void setPublicity(){
-
+    public Course setPublicity(int courseId){
+        getCourse(courseId).setActivity();
+        return null;
     }
 }

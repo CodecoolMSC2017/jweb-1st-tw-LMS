@@ -53,6 +53,7 @@ if(cookies !=null){
                     <a href='courses?courseid=<c:out value="${course.id}"/>&mode=view'><button>view</button></a>
                     <a href='courses?courseid=<c:out value="${course.id}"/>&mode=edit'><button>edit</button></a>
                     <a href='courses?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a>
+                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=publish'><button>(un)publish</button></a>
                 </li>
                </c:forEach>
             </table>

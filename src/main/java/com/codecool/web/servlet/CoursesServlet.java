@@ -23,7 +23,7 @@ public class CoursesServlet extends HttpServlet {
         ServletContext scx = req.getServletContext();
         CourseServiceImpl courseServiceImpl = (CourseServiceImpl) scx.getAttribute("courseServiceImpl");
         List<Course> courses = courseServiceImpl.getCourses();
-        if (courses.size() == 0) courseServiceImpl.addNewCourse("Copypaste skillz", "Tipps and trick to stackoverflow");
+        if (courses.size() == 0) courseServiceImpl.addNewCourse("Copypaste skillz", "Tips and tricks to stackoverflow");
         if (courseServiceImpl.getTasks(courses.get(0).getId()).size() == 0) {
             courseServiceImpl.addTask(courses.get(0).getId(), "Script kiddie life", "Are you ready to hardcode?", "task");
         }
@@ -70,6 +70,8 @@ public class CoursesServlet extends HttpServlet {
             } else if (mode.equals("delete")) {
                 courseServiceImpl.removeCourse(courseid);
                 req.getRequestDispatcher("courses.jsp").forward(req, resp);
+            } else if (mode.equals("publish")) {
+                req.setAttribute("course", courseServiceImpl.setPublicity(courseid));
             }
         }
         req.setAttribute("courses", courseList);
