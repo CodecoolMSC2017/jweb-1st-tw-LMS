@@ -29,7 +29,8 @@ public class CoursesServlet extends HttpServlet {
         }
 
         List<Course> courseList;
-        boolean permission = false;
+        User actualUser = (User) req.getSession().getAttribute("user");
+        boolean permission = actualUser.getPermission();
 
         if (permission) {
             courseList = courses;

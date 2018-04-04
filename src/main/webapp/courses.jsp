@@ -32,9 +32,11 @@
                 <li>
                     <c:out value="${course.name}"/>
                     <a href='courses?courseid=<c:out value="${course.id}"/>&mode=view'><button>view</button></a>
-                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=edit'><button>edit</button></a>
-                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a>
-                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=publish'><button>(un)publish</button></a>
+                    <c:if test= "${user.permission}">
+                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=edit'><button>edit</button></a>
+                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a>
+                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=publish'><button>(un)publish</button></a>
+                    </c:if>
                 </li>
                </c:forEach>
             </table>
