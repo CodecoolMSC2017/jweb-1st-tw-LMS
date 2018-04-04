@@ -1,8 +1,6 @@
 package com.codecool.web.service;
 
-import com.codecool.web.model.Assignment;
 import com.codecool.web.model.Course;
-import com.codecool.web.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +19,15 @@ public class CourseServiceImpl implements CourseService {
     public void addNewCourse(String title, String description) {
         Course course = new Course(title, description);
         courses.add(course);
+    }
+
+    public void editCourse(int id, String title,String desc, boolean activity) {
+        for(int i = 0; i< courses.size(); i++ ) {
+            if(courses.get(i).getId() == id) {
+                Course edited = new Course(id, title, desc, activity);
+                courses.set(i,edited);
+            }
+        }
     }
 
     public Course getCourse(int courseid) {
@@ -50,40 +57,6 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
-    public Task getTask(int courseId, int taskId) {
-        List<Task> tasks = getCourse(courseId).getTasks();
-
-        for (Task task : tasks) {
-            if (task.getId() == taskId) {
-                return task;
-            }
-        }
-        return null;
-    }
-
-    public List<Task> getTasks(int courseId) {
-        return getCourse(courseId).getTasks();
-    }
-
-    public void deleteTask(int courseId, int taskId) {
-        List<Task> tasks = getCourse(courseId).getTasks();
-        for (Task task : tasks) {
-            if (task.getId() == taskId) {
-                tasks.remove(task);
-            }
-        }
-    }
-
-    public void addTask(int courseId, String title, String description, String type) {
-        List<Task> tasks = getCourse(courseId).getTasks();
-        Task newTask = null;
-        if(type.equals("task")) {
-            newTask = new Task(title, description);
-        }else if(type.equals("assignment")) {
-            newTask = new Assignment(title, description);
-        }
-        tasks.add(newTask);
-    }
 
     public Course setPublicity(int courseId){
         getCourse(courseId).setActivity();

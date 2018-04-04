@@ -24,9 +24,7 @@ public class CoursesServlet extends HttpServlet {
         CourseServiceImpl courseServiceImpl = (CourseServiceImpl) scx.getAttribute("courseServiceImpl");
         List<Course> courses = courseServiceImpl.getCourses();
         if (courses.size() == 0) courseServiceImpl.addNewCourse("Copypaste skillz", "Tips and tricks to stackoverflow");
-        if (courseServiceImpl.getTasks(courses.get(0).getId()).size() == 0) {
-            courseServiceImpl.addTask(courses.get(0).getId(), "Script kiddie life", "Are you ready to hardcode?", "task");
-        }
+
 
         List<Course> courseList;
         User actualUser = (User) req.getSession().getAttribute("user");
@@ -52,7 +50,6 @@ public class CoursesServlet extends HttpServlet {
                 }
             }
             if (mode.equals("view")) {
-                req.setAttribute("tasks", courseServiceImpl.getTasks(courseid));
                 req.setAttribute("course", courseServiceImpl.getCourse(courseid));
                 req.getRequestDispatcher("course.jsp").forward(req, resp);
             } else if (mode.equals("new") || mode.equals("edit")) {
