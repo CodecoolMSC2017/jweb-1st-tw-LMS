@@ -11,15 +11,6 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%
-String userName = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-    for(Cookie cookie : cookies){
-        if(cookie.getName().equals("uname")) userName = cookie.getValue();
-    }
-}
-%>
     <div class="wrapper">
         <div class="container" id="header">
             <header>

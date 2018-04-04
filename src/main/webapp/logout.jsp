@@ -10,15 +10,6 @@
 <link href="puruttya.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%
-String userName = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-    for(Cookie cookie : cookies){
-        if(cookie.getName().equals("uname")) userName = cookie.getValue();
-    }
-}
-%>
     <div class="wrapper">
         <div class="container" id="header">
             <header>
@@ -28,44 +19,33 @@ if(cookies !=null){
                         <li><a href="home">home</a></li>
                         <li><a href="courses">courses</a></li>
                         <li><a href="users">users</a></li>
-                        <%
-                        if(userName == null) {
-                        %>
-                        <li class="active"><a href="login">login</a></li>
-                        <%
-                        } else {
-                        %>
                         <li class="active"><a href="logout">logout</a></li>
-                        <%
-                        }
-                        %>
                     </ul>
                 </nav>
             </header>
         </div>
-        <%
-        if(userName != null) {
-        %>
-        <div class="formcontainer">
-            <form action="logout" method="POST">
-                <p>Log out</p>
-                <input type="submit" value="Log out">
-                <%
-                    if (request.getAttribute("message") != null) {
-                %>
-                    ${message}
-                <%
-                    }
-                %>
-            </form>
-            <%
-            } else {
-            %>
+
+        <c:choose>
+            <c:when test = "${not empty user}">
+
+                <div class="formcontainer">
+                    <form action="logout" method="POST">
+                        <p>Log out</p>
+                        <input type="submit" value="Log out">
+                        <%
+                            if (request.getAttribute("message") != null) {
+                        %>
+                            ${message}
+                        <%
+                            }
+                        %>
+                    </form>
+            </c:when>
+            <c:otherwise>
                 <p>you are not logged in</p>
-            <%
-            }
-            %>
+            </c:otherwise>
         </div>
+        </c:choose>
     </div>
 </body>
 </html>

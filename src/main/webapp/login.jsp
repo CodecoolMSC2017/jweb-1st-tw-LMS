@@ -11,15 +11,6 @@
 <link href="puruttya.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%
-String userName = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-    for(Cookie cookie : cookies){
-        if(cookie.getName().equals("uname")) userName = cookie.getValue();
-    }
-}
-%>
     <div class="wrapper">
         <div class="container" id="header">
             <header>
@@ -41,54 +32,51 @@ if(cookies !=null){
                 </nav>
             </header>
         </div>
-        <%
-        if(userName == null) {
-        %>
-        <div class="formcontainer">
-            <h2>Welcome to the [placeholder] school <%=userName %></h2>
-            <form action="login" method="POST">
-                <p>Log in</p>
-                <label>Account name:</label>
-                <input type="text" name="account">
-                <label>Password:</label>
-                <input type="password" name="pass">
-                <input type="submit" value="Log in">
-                <%
-                    if (request.getAttribute("message") != null) {
-                %>
-                    ${message}
-                <%
-                    }
-                %>
-            </form>
-            <form action="register" method="POST">
-                <p>Or if you not registered yet you can do it now</p>
-                <p>Register:</p>
-                <label>Name:</label>
-                <input type="text" name="name" required>
-                <label>e-mail:</label>
-                <input type="text" name = "mail" required>
-                <label>password:</label>
-                <input type="password" name="password" required>
-                <input type="radio" name="permission" value="mentor">
-                <input type="radio" name="permission" value="student" checked>
-                <input type="submit" value="Register">
-                <%
-                    if (request.getAttribute("result") != null) {
-                %>
-                    ${result}
-                <%
-                    }
-                %>
-            </form>
-            <%
-            } else {
-            %>
-                <p>you are logged in as <%=userName %></p>
-            <%
-            }
-            %>
-        </div>
+        <c:choose>
+            <c:when test="${empty user}">
+            <div class="formcontainer">
+                <h2>Welcome to the [placeholder] school <%=userName %></h2>
+                <form action="login" method="POST">
+                    <p>Log in</p>
+                    <label>Account name:</label>
+                    <input type="text" name="account">
+                    <label>Password:</label>
+                    <input type="password" name="pass">
+                    <input type="submit" value="Log in">
+                    <%
+                        if (request.getAttribute("message") != null) {
+                    %>
+                        ${message}
+                    <%
+                        }
+                    %>
+                </form>
+                <form action="register" method="POST">
+                    <p>Or if you not registered yet you can do it now</p>
+                    <p>Register:</p>
+                    <label>Name:</label>
+                    <input type="text" name="name" required>
+                    <label>e-mail:</label>
+                    <input type="text" name = "mail" required>
+                    <label>password:</label>
+                    <input type="password" name="password" required>
+                    <input type="radio" name="permission" value="mentor">
+                    <input type="radio" name="permission" value="student" checked>
+                    <input type="submit" value="Register">
+                    <%
+                        if (request.getAttribute("result") != null) {
+                    %>
+                        ${result}
+                    <%
+                        }
+                    %>
+                </form>
+                </c:when>
+                <c:otherwise>
+                    <p>you are logged in as <%=userName %></p>
+                </c:otherwise>
+            </div>
+        </c:choose>
     </div>
 </body>
 </html>
