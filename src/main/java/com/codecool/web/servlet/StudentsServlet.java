@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
+import com.codecool.web.service.DataContainer;
 import com.codecool.web.service.UserServiceImpl;
 
 import javax.servlet.ServletContext;
@@ -17,10 +18,12 @@ import java.util.List;
 @WebServlet("/users")
 public class StudentsServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
-        if(cookies !=null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("uname")) {
+        //Cookie[] cookies = req.getCookies();
+        User actualUser = (User) req.getSession().getAttribute("user");
+        List<User> userses = DataContainer.getInstance().getUsersList();
+        if(actualUser.getName() != null) {
+            for (User userList : userses) {
+                if (userList.getName().equals(actualUser.getName())) {
                     ServletContext scx = req.getServletContext();
                     UserServiceImpl userServiceImpl = new UserServiceImpl();
                     List<User> users = userServiceImpl.getUsers();
