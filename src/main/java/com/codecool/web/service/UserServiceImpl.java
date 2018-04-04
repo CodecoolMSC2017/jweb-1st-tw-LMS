@@ -84,4 +84,11 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    public void editUser(int id, String email, String password, boolean permission) {
+        User editedUser = getUserById(id);
+        editedUser.setEmail(email);
+        editedUser.setPassword(password);
+        editedUser.setPermission(permission);
+    }
 }

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>user</title>
+<title>edit</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -26,21 +26,20 @@
             </header>
         </div>
         <div class="container" id="user">
-            <ul class="user">
-                <c:set var = "temp" scope = "session" value = "${user}"/>
-                <li>id: <c:out value="${temp.id}"/></li>
-                <li>name: <c:out value="${temp.name}"/></li>
-                <li>email: <c:out value="${temp.email}"/></li>
-                <c:set var = "role" scope = "session" value = "${user.permission}"/>
-                <c:choose>
-                <c:when test="${role != 'false'}">
-                <li>role: mentor</li>
-                </c:when>
-                <c:otherwise>
-                <li>role: studente</li>
+            <div class="editform">
+                <form method="POST" action="edit">
+                    <h2>edit user</h2>
+                    <input type="text" name="e-mail" value ="<c:out value="${user.email}"/>" required>
+                    <input type="text" name="password" value ="<c:out value="${user.password}"/>" required>
+                    <p>Role:
+                    <select name="role" id="role">
+                        <option selected disabled>${user.role}</option>
+                        <option value="student">Student</option>
+                        <option value="mentor">Mentor</option>
+                    </select><br></p>
+                    <input class="button" type="submit" value="Save">
+                </form>
                 </c:otherwise>
-                </c:choose>
-                <a href="user">Edit profile</a>
             </ul>
         </div>
     </div>
