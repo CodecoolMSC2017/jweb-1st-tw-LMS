@@ -2,11 +2,9 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
 import com.codecool.web.service.UserServiceImpl;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,8 +24,7 @@ public class LoginServlet extends HttpServlet {
         if (checkParams(req)) {
             if(userServiceImpl.authenticateUser(req.getParameter("account"),req.getParameter("pass"))){
                 User user = userServiceImpl.getUser(req.getParameter("account"));
-                Cookie ck = new Cookie("uname",user.getName());
-                resp.addCookie(ck);
+                req.getSession().setAttribute("user",user);
                 resp.sendRedirect("home");
                 //req.getRequestDispatcher("index.jsp").forward(req,resp);
             }
