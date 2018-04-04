@@ -18,13 +18,13 @@
                     <ul>
                         <li><img src="logo.png"></li>
                         <li><a href="home">home</a></li>
-                        <li><a href="courses">courses</a></li>
-                        <li><a href="users">users</a></li>
                         <c:choose>
                             <c:when test="${empty user}">
                                 <li class="active"><a href="login">login</a></li>
                             </c:when>
                             <c:otherwise>
+                                <li><a href="courses">courses</a></li>
+                                <li><a href="users">users</a></li>
                                 <li class="active"><a href="logout">logout</a></li>
                             </c:otherwise>
                         </c:choose>
@@ -32,10 +32,11 @@
                 </nav>
             </header>
         </div>
+        <div class="formcontainer">
         <c:choose>
             <c:when test="${empty user}">
-            <div class="formcontainer">
-                <h2>Welcome to the [placeholder] school <%=userName %></h2>
+
+                <h2>Welcome to the [placeholder] school ${user.name}</h2>
                 <form action="login" method="POST">
                     <p>Log in</p>
                     <label>Account name:</label>
@@ -73,10 +74,11 @@
                 </form>
                 </c:when>
                 <c:otherwise>
-                    <p>you are logged in as <%=userName %></p>
+                    <p>you are logged in as ${user.name}</p>
                 </c:otherwise>
-            </div>
+
         </c:choose>
+        </div>
     </div>
 </body>
 </html>

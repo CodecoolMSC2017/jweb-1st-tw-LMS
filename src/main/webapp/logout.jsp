@@ -24,11 +24,11 @@
                 </nav>
             </header>
         </div>
-
+        <div class="formcontainer">
         <c:choose>
             <c:when test = "${not empty user}">
 
-                <div class="formcontainer">
+
                     <form action="logout" method="POST">
                         <p>Log out</p>
                         <input type="submit" value="Log out">
@@ -44,8 +44,8 @@
             <c:otherwise>
                 <p>you are not logged in</p>
             </c:otherwise>
-        </div>
         </c:choose>
+        </div>
     </div>
 </body>
 </html>

@@ -18,7 +18,6 @@
                     <ul>
                         <li><img src="logo.png"></li>
                         <li class="active"><a href="home">home</a></li>
-
                         <c:choose>
                             <c:when test="${empty user}">
                                 <li><a href="login">login</a></li>

@@ -27,25 +27,16 @@ public class CoursesServlet extends HttpServlet {
         if (courseServiceImpl.getTasks(courses.get(0).getId()).size() == 0) {
             courseServiceImpl.addTask(courses.get(0).getId(), "Script kiddie life", "Are you ready to hardcode?", "task");
         }
+
         List<Course> courseList;
-        Cookie[] cks = req.getCookies();
         boolean permission = false;
-        for (Cookie ck : cks) {
-            if (ck.getName().equals("uname")) {
-                List<User> users = DataContainer.getInstance().getUsersList();
-                for (User user : users) {
-                    if (user.getName().equals(ck.getValue())) {
-                        permission = user.getPermission();
-                        break;
-                    }
-                }
-            }
-        }
+
         if (permission) {
             courseList = courses;
         } else {
             courseList = courseServiceImpl.availableCourses();
         }
+
         if (req.getQueryString() != null) {
             String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
             String[] parameters = queryString.split("&");
