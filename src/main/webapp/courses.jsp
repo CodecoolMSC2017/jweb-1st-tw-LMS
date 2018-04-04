@@ -26,7 +26,8 @@
             </header>
         </div>
         <c:if test= "${user.permission}">
-            <a href="courses?mode=new"><button>add new</button></a>
+            <a href="courses?mode=new"><button>new course</button></a>
+            <a href="assignment?mode=new"><button>new assignment</button></a>
         </c:if>
         <div class="container" id="courses">
             <ul class="list">
