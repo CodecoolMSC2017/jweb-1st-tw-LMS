@@ -9,14 +9,19 @@ public class Course {
     private String name;
     private String desc;
     boolean isActive;
-    private List<Task> tasks;
 
     public Course(String name, String desc) {
         this.id = new Random().nextInt(100000);
         this.name = name;
         this.desc = desc;
         this.isActive = false;
-        this.tasks = new ArrayList<>();
+    }
+
+    public Course(int id,String name, String desc,boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.isActive = isActive;
     }
 
     public int getId() {
@@ -31,21 +36,6 @@ public class Course {
         return desc;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void addNewTask(Task task) {
-        tasks.add(task);
-    }
-
-    public void deleteTask(String title) {
-        for (Task task : tasks) {
-            if (task.getTitle().equals(title)) {
-                tasks.remove(task);
-            }
-        }
-    }
 
     public boolean getActive() {
         return isActive;
