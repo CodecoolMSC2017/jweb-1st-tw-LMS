@@ -29,17 +29,14 @@ if(cookies !=null){
                         <li><a href="home">home</a></li>
                         <li><a href="courses">courses</a></li>
                         <li><a href="users">users</a></li>
-                        <%
-                        if(userName == null) {
-                        %>
-                        <li class="active"><a href="login">login</a></li>
-                        <%
-                        } else {
-                        %>
-                        <li class="active"><a href="logout">logout</a></li>
-                        <%
-                        }
-                        %>
+                        <c:choose>
+                            <c:when test="${empty user}">
+                                <li class="active"><a href="login">login</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="active"><a href="logout">logout</a></li>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>
                 </nav>
             </header>

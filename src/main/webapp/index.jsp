@@ -18,12 +18,17 @@
                     <ul>
                         <li><img src="logo.png"></li>
                         <li class="active"><a href="home">home</a></li>
-                        <li><a href="courses">courses</a></li>
-                        <li><a href="users">users</a></li>
-                        <c:if test="${empty user}">
-                            <li><a href="login">login</a></li>
-                        <li><a href="logout">logout</a></li>
-                        </c:if>
+
+                        <c:choose>
+                            <c:when test="${empty user}">
+                                <li><a href="login">login</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="courses">courses</a></li>
+                                <li><a href="users">users</a></li>
+                                <li><a href="logout">logout</a></li>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>
                 </nav>
             </header>
@@ -33,8 +38,7 @@
             <img src="puruttya.jpg">
             <p>Welcome to Puruttya WebTeacher</p>
             <c:if test="${not empty user}">
-
-                <p>Aggmá egy cigit "${userName}"</p>
+                <p>Aggmá egy cigit ${user.name}</p>
             </c:if>
             <p>Here you can find trick and tips to be the best scriptkiddie in town. Download Kali linux use its tools. Hack your girlfriends facebook. And so much more.</p>
         </div>
