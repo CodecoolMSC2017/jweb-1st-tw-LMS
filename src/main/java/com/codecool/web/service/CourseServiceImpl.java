@@ -1,5 +1,6 @@
 package com.codecool.web.service;
 
+import com.codecool.web.model.Assignment;
 import com.codecool.web.model.Course;
 
 import java.util.ArrayList;
@@ -19,6 +20,11 @@ public class CourseServiceImpl implements CourseService {
     public void addNewCourse(String title, String description) {
         Course course = new Course(title, description);
         courses.add(course);
+    }
+
+    public void addNewAssignment(String title, String description, String submission) {
+        Course assignment = new Assignment(title,description);
+        courses.add(assignment);
     }
 
     public void editCourse(int id, String title,String desc, boolean activity) {
