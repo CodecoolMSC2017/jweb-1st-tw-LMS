@@ -61,8 +61,8 @@
                     <input type="text" name = "mail" required>
                     <label>password:</label>
                     <input type="password" name="password" required>
-                    <input type="radio" name="permission" value="mentor">
-                    <input type="radio" name="permission" value="student" checked>
+                    <input type="radio" name="permission" value="mentor">Mentor</input>
+                    <input type="radio" name="permission" value="student" checked>Student</input>
                     <input type="submit" value="Register">
                     <%
                         if (request.getAttribute("result") != null) {
