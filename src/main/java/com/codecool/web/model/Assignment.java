@@ -1,6 +1,6 @@
 package com.codecool.web.model;
 
-public class Assignment extends Task {
+public class Assignment extends Course {
 
     private String submission;
 
