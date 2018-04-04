@@ -8,12 +8,14 @@ public class Assignment extends Course {
         super(title, content);
     }
 
+    public Assignment(String title, String content, String submission) {
+        super(title, content);
+        this.submission = submission;
+    }
+
 
     public String getSubmission() {
         return submission;
     }
 
-    public void setSubmission(String submission) {
-        this.submission = submission;
-    }
 }
