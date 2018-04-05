@@ -53,12 +53,11 @@ public class AssignmentsServlet extends HttpServlet {
                 req.getRequestDispatcher("editassign.jsp").forward(req, resp);
             } else if (mode.equals("delete")) {
                 courseServiceImpl.removeCourse(courseid);
-                req.getRequestDispatcher("courses").forward(req, resp);
             } else if (mode.equals("publish")) {
                 req.setAttribute("course", courseServiceImpl.setPublicity(courseid));
             }
         }
         req.setAttribute("courses", courseList);
-        req.getRequestDispatcher("courses").forward(req, resp);
+        req.getRequestDispatcher("courses.jsp").forward(req, resp);
     }
 }
