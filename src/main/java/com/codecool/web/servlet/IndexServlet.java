@@ -18,5 +18,6 @@ public class IndexServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         req.setAttribute("user", user);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
+
     }
 }

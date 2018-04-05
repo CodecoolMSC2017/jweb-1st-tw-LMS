@@ -7,7 +7,6 @@ import com.codecool.web.service.UserServiceImpl;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,16 +17,14 @@ import java.util.List;
 @WebServlet("/users")
 public class StudentsServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Cookie[] cookies = req.getCookies();
         User actualUser = (User) req.getSession().getAttribute("user");
         List<User> userses = DataContainer.getInstance().getUsersList();
-        if(actualUser.getName() != null) {
+        if (actualUser.getName() != null) {
             for (User userList : userses) {
                 if (userList.getName().equals(actualUser.getName())) {
                     ServletContext scx = req.getServletContext();
                     UserServiceImpl userServiceImpl = new UserServiceImpl();
                     List<User> users = userServiceImpl.getUsers();
-                    if (users.size() == 0) userServiceImpl.addNewUser(new User(1, "admin", "admin@admin.com", "admin", true));
                     if (req.getQueryString() != null) {
                         String queryString = URLDecoder.decode(req.getQueryString(), "UTF-8");
                         String[] parameters = queryString.split("&");
