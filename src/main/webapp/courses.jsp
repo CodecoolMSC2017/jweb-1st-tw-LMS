@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,12 +34,26 @@
             <ul class="list">
                <c:forEach var="course" items="${courses}">
                 <li>
-                    <c:out value="${course.name}"/>
-                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=view'><button>view</button></a>
-                    <c:if test= "${user.permission}">
-                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=edit'><button>edit</button></a>
-                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a>
-                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=publish'><button>(un)publish</button></a>
+                    <c:if test="${fn:length(courses) gt 0}">
+                        <c:out value="${course.name}"/>
+                            <c:choose>
+                                <c:when test="${course['class'].simpleName == 'Assignment'}">
+                                    <a href='assignment?courseid=<c:out value="${course.id}"/>&mode=view'><button>view</button></a>
+                                    <c:if test= "${user.permission}">
+                                        <a href='assignment?courseid=<c:out value="${course.id}"/>&mode=edit'><button>edit</button></a>
+                                        <a href='assignment?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a>
+                                        <a href='assignment?courseid=<c:out value="${course.id}"/>&mode=publish'><button>(un)publish</button></a>
+                                    </c:if>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href='courses?courseid=<c:out value="${course.id}"/>&mode=view'><button>view</button></a>
+                                    <c:if test= "${user.permission}">
+                                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=edit'><button>edit</button></a>
+                                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=delete'><button>delete</button></a>
+                                        <a href='courses?courseid=<c:out value="${course.id}"/>&mode=publish'><button>(un)publish</button></a>
+                                    </c:if>
+                                </c:otherwise>
+                        </c:choose>
                     </c:if>
                 </li>
                </c:forEach>
