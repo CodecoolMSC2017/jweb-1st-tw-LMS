@@ -18,6 +18,7 @@ import java.util.List;
 public class StudentsServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User actualUser = (User) req.getSession().getAttribute("user");
+        boolean canEdit = false;
         List<User> userses = DataContainer.getInstance().getUsersList();
         if (actualUser.getName() != null) {
             for (User userList : userses) {
@@ -31,6 +32,12 @@ public class StudentsServlet extends HttpServlet {
                         for (String parameter : parameters) {
                             String param1 = parameter.split("=")[0];
                             int param2 = Integer.parseInt(parameter.split("=")[1]);
+                            if (!(param2 == actualUser.getId()) && !actualUser.getPermission()) {
+                                canEdit = false;
+                            } else if (param2 == actualUser.getId() || actualUser.getPermission()) {
+                                canEdit = true;
+                            }
+                            req.setAttribute("canEdit", canEdit);
                             if (param1.equals("userid")) {
                                 User user = userServiceImpl.getUserById(param2);
                                 req.setAttribute("user", user);
