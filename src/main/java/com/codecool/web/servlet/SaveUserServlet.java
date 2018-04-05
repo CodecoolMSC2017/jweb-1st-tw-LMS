@@ -17,7 +17,7 @@ import java.net.URLDecoder;
 import java.util.List;
 
 
-@WebServlet("/user")
+@WebServlet("/edituser")
 public class SaveUserServlet extends HttpServlet{
     public boolean checkParams(HttpServletRequest req) {
         return req.getParameter("e-mail") !=null && req.getParameter("password") !=null &&
@@ -26,8 +26,7 @@ public class SaveUserServlet extends HttpServlet{
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User actualUser = (User) req.getSession().getAttribute("user");
-        ServletContext scx = req.getServletContext();
-        UserServiceImpl userServiceImpl = (UserServiceImpl) scx.getAttribute("userServiceImpl");
+        UserServiceImpl userServiceImpl = new UserServiceImpl();
         if (checkParams(req)) {
             int id = actualUser.getId();
             String role = req.getParameter("role");
@@ -36,7 +35,7 @@ public class SaveUserServlet extends HttpServlet{
                 roletype = true;
             }
             userServiceImpl.editUser(id,req.getParameter("e-mail"), req.getParameter("password"), roletype);
-            resp.sendRedirect("user");
+            resp.sendRedirect("users");
         }
     }
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

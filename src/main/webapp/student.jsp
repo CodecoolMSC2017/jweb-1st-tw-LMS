@@ -40,7 +40,7 @@
                 <li>role: studente</li>
                 </c:otherwise>
                 </c:choose>
-                <a href="user">Edit profile</a>
+                <a href="edituser">Edit profile</a>
             </ul>
         </div>
     </div>
