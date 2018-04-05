@@ -27,7 +27,7 @@
         </div>
         <div class="container" id="user">
             <div class="editform">
-                <form method="POST" action="user">
+                <form method="POST" action="edituser">
                     <h2>edit user</h2>
                     <input type="text" name="e-mail" value ="<c:out value="${user.email}"/>" required>
                     <input type="text" name="password" value ="<c:out value="${user.password}"/>" required>
