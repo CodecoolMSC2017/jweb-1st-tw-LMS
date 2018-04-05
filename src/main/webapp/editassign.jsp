@@ -44,8 +44,9 @@
                     <c:set var = "temp" scope = "session" value = "${course}"/>
                     <input type="text" name="title" value ="<c:out value="${temp.name}"/>" required>
                     <textarea rows="15" cols="50" name="description"><c:out value="${temp.desc}"/></textarea>
-                    <c:set var="id" value="${assignment.id}" scope="session"/>
+                    <c:set var="assignid" value="${assignment.assignId}" scope="session"/>
                     <c:set var="act" value="${assignment.active}" scope="session"/>
+                    <c:set var="submission" value="${assignment.submission}" scope="session"/>
                     <button type="submit">save</button>
                 </form>
                 </c:otherwise>
