@@ -4,6 +4,7 @@ import com.codecool.web.model.Assignment;
 import com.codecool.web.model.Course;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CourseServiceImpl implements CourseService {
@@ -54,12 +55,15 @@ public class CourseServiceImpl implements CourseService {
         }
         return result;
     }
-
+    //TODO using ITERATOR to avoid ConcurrentModificaton
     public void removeCourse(int id) {
-        for (Course course : courses) {
-            if (course.getId() == id) {
-                courses.remove(course);
-            }
+
+        Iterator<Course> iter = courses.iterator();
+
+        while (iter.hasNext()) {
+            Course elem = iter.next();
+            if (elem.getId()==id)
+                iter.remove();
         }
     }
 
