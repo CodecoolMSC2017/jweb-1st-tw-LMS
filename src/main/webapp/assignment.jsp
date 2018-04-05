@@ -28,7 +28,7 @@
         <div class="container">
             <ul class="list">
                 <h2>Task</h2>
-                <c:set var = "temp" scope = "session" value = "${course}">
+                <c:set var = "temp" scope = "session" value = "${course}"/>
                 <li>Task name: <c:out value="${temp.name}"/></li>
                 <li>Task description: <c:out value="${temp.desc}"/></li>
                 <c:if test = "${not user.permission}" >
