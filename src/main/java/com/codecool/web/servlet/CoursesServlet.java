@@ -17,7 +17,7 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/courses")
+@WebServlet(name= "courses",urlPatterns="/courses")
 public class CoursesServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
@@ -58,7 +58,7 @@ public class CoursesServlet extends HttpServlet {
                 req.getRequestDispatcher("edit.jsp").forward(req, resp);
             } else if (mode.equals("delete")) {
                 courseServiceImpl.removeCourse(courseid);
-                req.getRequestDispatcher("courses.jsp").forward(req, resp);
+                resp.sendRedirect("courses.jsp");
             } else if (mode.equals("publish")) {
                 req.setAttribute("course", courseServiceImpl.setPublicity(courseid));
             }
