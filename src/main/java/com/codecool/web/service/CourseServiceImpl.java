@@ -40,7 +40,7 @@ public class CourseServiceImpl implements CourseService {
     public void editAssignment(int id, String title,String desc, boolean activity, String submission) {
         for(int i = 0; i< courses.size(); i++ ) {
             if(courses.get(i).getId() == id) {
-                Course edited = new Assignment(id, title, desc, activity, submission);
+                Course edited = new Assignment(id,title, desc, activity,id, submission);
                 courses.set(i,edited);
             }
         }

@@ -25,7 +25,6 @@ public class CoursesServlet extends HttpServlet {
         List<Course> courses = courseServiceImpl.getCourses();
         if (courses.size() == 0) courseServiceImpl.addNewCourse("Copypaste skillz", "Tips and tricks to stackoverflow");
 
-
         List<Course> courseList;
         User actualUser = (User) req.getSession().getAttribute("user");
         boolean permission = actualUser.getPermission();
@@ -58,7 +57,7 @@ public class CoursesServlet extends HttpServlet {
                 req.getRequestDispatcher("edit.jsp").forward(req, resp);
             } else if (mode.equals("delete")) {
                 courseServiceImpl.removeCourse(courseid);
-                resp.sendRedirect("courses.jsp");
+                req.getRequestDispatcher("courses.jsp").forward(req,resp);
             } else if (mode.equals("publish")) {
                 req.setAttribute("course", courseServiceImpl.setPublicity(courseid));
             }

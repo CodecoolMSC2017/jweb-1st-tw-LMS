@@ -32,19 +32,19 @@
                 <c:choose>
                 <c:when test="${m.equals('new')}">
                 <form method="POST" action="newassignment">
-                    <h2>newcourse</h2>
-                    <input type="text" name="title" value="course name"required>
-                    <textarea rows="15" cols="50" name="description">course description</textarea>
+                    <h2>new Assignment</h2>
+                    <input type="text" name="title" value="Assignment name"required>
+                    <textarea rows="15" cols="50" name="description">Assignment description</textarea>
                     <button type="submit">save</button>
                 </form>
                 </c:when>
                 <c:otherwise>
                 <form method="POST" action="saveassignment">
-                    <h2>edit course</h2>
-                    <c:set var = "temp" scope = "session" value = "${course}"/>
+                    <h2>edit Assignment</h2>
+                    <c:set var = "temp" scope = "session" value = "${assignment}"/>
                     <input type="text" name="title" value ="<c:out value="${temp.name}"/>" required>
                     <textarea rows="15" cols="50" name="description"><c:out value="${temp.desc}"/></textarea>
-                    <c:set var="assignid" value="${assignment.assignId}" scope="session"/>
+                    <c:set var="id" value="${assignment.id}" scope="session"/>
                     <c:set var="act" value="${assignment.active}" scope="session"/>
                     <c:set var="submission" value="${assignment.submission}" scope="session"/>
                     <button type="submit">save</button>
