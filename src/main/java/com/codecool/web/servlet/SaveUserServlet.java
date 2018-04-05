@@ -1,7 +1,9 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.Course;
+import com.codecool.web.model.User;
 import com.codecool.web.service.CourseServiceImpl;
+import com.codecool.web.service.DataContainer;
 import com.codecool.web.service.UserServiceImpl;
 
 import javax.servlet.ServletContext;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.List;
 
 
 @WebServlet("/user")
@@ -21,17 +25,30 @@ public class SaveUserServlet extends HttpServlet{
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User actualUser = (User) req.getSession().getAttribute("user");
         ServletContext scx = req.getServletContext();
         UserServiceImpl userServiceImpl = (UserServiceImpl) scx.getAttribute("userServiceImpl");
         if (checkParams(req)) {
-            int id = (Integer)req.getSession().getAttribute("id");
+            int id = actualUser.getId();
             String role = req.getParameter("role");
             boolean roletype = false;
             if (role.equals("mentor")){
                 roletype = true;
             }
-            userServiceImpl.editUser(id,req.getParameter("email"), req.getParameter("password"), roletype);
+            userServiceImpl.editUser(id,req.getParameter("e-mail"), req.getParameter("password"), roletype);
             resp.sendRedirect("user");
+        }
+    }
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User actualUser = (User) req.getSession().getAttribute("user");
+        List<User> userses = DataContainer.getInstance().getUsersList();
+        if (actualUser.getName() != null) {
+            for (User userList : userses) {
+                if (userList.getName().equals(actualUser.getName())) {
+                    req.setAttribute("user", actualUser);
+                    req.getRequestDispatcher("edituser.jsp").forward(req, resp);
+                }
+            }
         }
     }
 }

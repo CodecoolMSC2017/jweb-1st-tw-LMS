@@ -27,19 +27,17 @@
         </div>
         <div class="container" id="user">
             <div class="editform">
-                <form method="POST" action="edit">
+                <form method="POST" action="user">
                     <h2>edit user</h2>
                     <input type="text" name="e-mail" value ="<c:out value="${user.email}"/>" required>
                     <input type="text" name="password" value ="<c:out value="${user.password}"/>" required>
                     <p>Role:
                     <select name="role" id="role">
-                        <option selected disabled>${user.role}</option>
                         <option value="student">Student</option>
                         <option value="mentor">Mentor</option>
                     </select><br></p>
                     <input class="button" type="submit" value="Save">
                 </form>
-                </c:otherwise>
             </ul>
         </div>
     </div>
