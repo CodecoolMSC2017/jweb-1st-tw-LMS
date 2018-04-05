@@ -33,14 +33,16 @@
                 <li>email: <c:out value="${temp.email}"/></li>
                 <c:set var = "role" scope = "session" value = "${user.permission}"/>
                 <c:choose>
-                <c:when test="${role != 'false'}">
-                <li>role: mentor</li>
-                </c:when>
-                <c:otherwise>
-                <li>role: studente</li>
-                </c:otherwise>
+                    <c:when test="${role != 'false'}">
+                        <li>role: mentor</li>
+                    </c:when>
+                    <c:otherwise>
+                        <li>role: student</li>
+                    </c:otherwise>
                 </c:choose>
-                <a href="edituser">Edit profile</a>
+                <c:if test= "${canEdit}">
+                    <a href="edituser">Edit profile</a>
+                </c:if>
             </ul>
         </div>
     </div>
