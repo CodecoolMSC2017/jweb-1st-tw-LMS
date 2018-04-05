@@ -10,7 +10,7 @@ public interface CourseService {
 
     void addNewCourse(String title, String description);
 
-    void addNewAssignment(String title, String description, String submission);
+    void addNewAssignment(String title, String description);
 
     void editCourse(int id, String title,String desc, boolean activity);
 

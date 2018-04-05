@@ -22,7 +22,7 @@ public class CourseServiceImpl implements CourseService {
         courses.add(course);
     }
 
-    public void addNewAssignment(String title, String description, String submission) {
+    public void addNewAssignment(String title, String description) {
         Course assignment = new Assignment(title,description);
         courses.add(assignment);
     }
