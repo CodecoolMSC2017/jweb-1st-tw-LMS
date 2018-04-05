@@ -18,12 +18,12 @@ public class SaveAssignmentServlet extends HttpServlet{
         return req.getParameter("title") !=null && req.getParameter("description") !=null &&
                 !req.getParameter("description").equals("") && !req.getParameter("title").equals("");
     }
-    // TODO in 26th row makes NullPointerException
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
         CourseServiceImpl courseServiceImpl = (CourseServiceImpl)scx.getAttribute("courseServiceImpl");
         if (checkParams(req)) {
-            int id = (Integer)req.getSession().getAttribute("assignid");
+            int id = (Integer)req.getSession().getAttribute("id");
             boolean activity = (Boolean) req.getSession().getAttribute("act");
             String submission = (String) req.getSession().getAttribute("submission");
             courseServiceImpl.editAssignment(id,req.getParameter("title"), req.getParameter("description"),activity, submission);
