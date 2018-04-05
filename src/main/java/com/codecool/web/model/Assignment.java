@@ -1,16 +1,18 @@
 package com.codecool.web.model;
 
 public class Assignment extends Course {
-
+    private int assignId;
     private String submission;
 
-    public Assignment(String title, String content) {
-        super(title, content);
+    public Assignment(String name, String desc) {
+        super(name, desc);
+        this.assignId = generateId();
+
     }
 
-    public Assignment(String title, String content, String submission) {
-        super(title, content);
-        this.submission = submission;
+    public Assignment(int id ,String name, String desc, boolean isActive, String submission) {
+        super(id, name, desc, isActive);
+        this.submission = null;
     }
 
 
@@ -18,4 +20,12 @@ public class Assignment extends Course {
         return submission;
     }
 
+    /*public void setSubmission() {
+
+    }*/
+
+
+    public int getAssignId() {
+        return assignId;
+    }
 }
