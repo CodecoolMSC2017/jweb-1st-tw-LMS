@@ -27,15 +27,23 @@ public class SaveUserServlet extends HttpServlet{
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User actualUser = (User) req.getSession().getAttribute("user");
         UserServiceImpl userServiceImpl = new UserServiceImpl();
-        if (checkParams(req)) {
-            int id = actualUser.getId();
-            String role = req.getParameter("role");
-            boolean roletype = false;
-            if (role.equals("mentor")){
-                roletype = true;
+        if (actualUser.getPermission()) {
+            if (checkParams(req)) {
+                int id = actualUser.getId();
+                String role = req.getParameter("role");
+                boolean roletype = false;
+                if (role.equals("mentor")) {
+                    roletype = true;
+                }
+                userServiceImpl.editUser(id, req.getParameter("e-mail"), req.getParameter("password"), roletype);
+                resp.sendRedirect("users");
             }
-            userServiceImpl.editUser(id,req.getParameter("e-mail"), req.getParameter("password"), roletype);
-            resp.sendRedirect("users");
+        } else {
+            if (checkParams(req)) {
+                int id = actualUser.getId();
+                userServiceImpl.editUser(id, req.getParameter("e-mail"), req.getParameter("password"), false);
+                resp.sendRedirect("users");
+            }
         }
     }
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
