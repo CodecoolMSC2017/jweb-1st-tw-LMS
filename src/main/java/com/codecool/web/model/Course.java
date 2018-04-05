@@ -1,7 +1,5 @@
 package com.codecool.web.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Course {
@@ -11,7 +9,7 @@ public class Course {
     boolean isActive;
 
     public Course(String name, String desc) {
-        this.id = new Random().nextInt(100000);
+        this.id = generateId();
         this.name = name;
         this.desc = desc;
         this.isActive = false;
@@ -26,6 +24,10 @@ public class Course {
 
     public int getId() {
         return id;
+    }
+
+    public int generateId() {
+        return new Random().nextInt(100000)+1;
     }
 
     public String getName() {
