@@ -31,12 +31,14 @@
                     <h2>edit user</h2>
                     <input type="text" name="e-mail" value ="<c:out value="${user.email}"/>" required>
                     <input type="text" name="password" value ="<c:out value="${user.password}"/>" required>
-                    <p>Role:
-                    <select name="role" id="role">
-                        <option value="student">Student</option>
-                        <option value="mentor">Mentor</option>
-                    </select><br></p>
-                    <input class="button" type="submit" value="Save">
+                    <c:if test = "${user.permission == 'true'}">
+                        <p>Role:
+                        <select name="role" id="role">
+                            <option value="student">Student</option>
+                            <option value="mentor">Mentor</option>
+                        </select><br></p>
+                    </c:if>
+                    <button class="button" type="submit" value="Save">Submit</button>
                 </form>
             </ul>
         </div>
