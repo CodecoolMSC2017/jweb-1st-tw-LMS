@@ -49,16 +49,16 @@ public class AssignmentsServlet extends HttpServlet {
                 req.getRequestDispatcher("assignment.jsp").forward(req, resp);
             } else if (mode.equals("new") || mode.equals("edit")) {
                 req.setAttribute("mode", mode);
-                req.setAttribute("course", courseServiceImpl.getCourse(courseid));
+                req.getSession().setAttribute("assignment", courseServiceImpl.getCourse(courseid));
                 req.getRequestDispatcher("editassign.jsp").forward(req, resp);
             } else if (mode.equals("delete")) {
                 courseServiceImpl.removeCourse(courseid);
-                req.getRequestDispatcher("courses.jsp").forward(req, resp);
+                req.getRequestDispatcher("courses").forward(req, resp);
             } else if (mode.equals("publish")) {
                 req.setAttribute("course", courseServiceImpl.setPublicity(courseid));
             }
         }
         req.setAttribute("courses", courseList);
-        req.getRequestDispatcher("courses.jsp").forward(req, resp);
+        req.getRequestDispatcher("courses").forward(req, resp);
     }
 }

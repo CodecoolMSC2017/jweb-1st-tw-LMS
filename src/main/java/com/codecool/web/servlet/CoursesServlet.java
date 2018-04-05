@@ -25,7 +25,6 @@ public class CoursesServlet extends HttpServlet {
         List<Course> courses = courseServiceImpl.getCourses();
         if (courses.size() == 0) courseServiceImpl.addNewCourse("Copypaste skillz", "Tips and tricks to stackoverflow");
 
-
         List<Course> courseList;
         User actualUser = (User) req.getSession().getAttribute("user");
         boolean permission = actualUser.getPermission();
