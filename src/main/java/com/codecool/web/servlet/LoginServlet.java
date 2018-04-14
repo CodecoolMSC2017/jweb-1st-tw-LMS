@@ -1,6 +1,8 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
+import com.codecool.web.service.LoginService;
+import com.codecool.web.service.LoginServiceImpl;
 import com.codecool.web.service.UserServiceImpl;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,15 +15,15 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    public boolean checkParams(HttpServletRequest req) {
-        return req.getParameter("account") !=null && req.getParameter("pass") !=null &&
-                !req.getParameter("account").equals("") && !req.getParameter("pass").equals("");
-    }
+
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         ServletContext scx = req.getServletContext();
         UserServiceImpl userServiceImpl = new UserServiceImpl();
-        if (checkParams(req)) {
+        LoginServiceImpl loginService = new LoginServiceImpl();
+
+        if (loginService.checkParams(req)) {
             if(userServiceImpl.authenticateUser(req.getParameter("account"),req.getParameter("pass"))){
                 User user = userServiceImpl.getUser(req.getParameter("account"));
                 req.getSession().setAttribute("user",user);
