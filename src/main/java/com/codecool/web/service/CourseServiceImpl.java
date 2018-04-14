@@ -23,8 +23,8 @@ public class CourseServiceImpl implements CourseService {
         courses.add(course);
     }
 
-    public void addNewAssignment(String title, String description) {
-        Course assignment = new Assignment(title,description);
+    public void addNewAssignment(String title, String description,int maxPoints) {
+        Course assignment = new Assignment(title,description,maxPoints);
         courses.add(assignment);
     }
 
@@ -37,10 +37,10 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
-    public void editAssignment(int id, String title,String desc, boolean activity, String submission) {
+    public void editAssignment(int id, String title,String desc,int newMaxPt, boolean activity, String submission) {
         for(int i = 0; i< courses.size(); i++ ) {
             if(courses.get(i).getId() == id) {
-                Course edited = new Assignment(id,title, desc, activity,id, submission);
+                Course edited = new Assignment(id,title, desc,newMaxPt, activity,id, submission);
                 courses.set(i,edited);
             }
         }

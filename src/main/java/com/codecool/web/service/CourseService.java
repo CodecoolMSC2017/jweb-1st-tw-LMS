@@ -10,7 +10,7 @@ public interface CourseService {
 
     void addNewCourse(String title, String description);
 
-    void addNewAssignment(String title, String description);
+    void addNewAssignment(String title, String description, int maxPoints);
 
     void editCourse(int id, String title,String desc, boolean activity);
 
@@ -19,6 +19,8 @@ public interface CourseService {
     List<Course> availableCourses();
 
     void removeCourse(int id);
+
+    public void editAssignment(int id, String title,String desc,int newMaxPt, boolean activity, String submission);
 }
 
 
