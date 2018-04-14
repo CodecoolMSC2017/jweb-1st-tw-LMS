@@ -1,19 +1,15 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.model.Course;
 import com.codecool.web.model.User;
-import com.codecool.web.service.CourseServiceImpl;
 import com.codecool.web.service.DataContainer;
 import com.codecool.web.service.UserServiceImpl;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.List;
 
 
@@ -29,6 +25,8 @@ public class SaveUserServlet extends HttpServlet{
         UserServiceImpl userServiceImpl = new UserServiceImpl();
         if (actualUser.getPermission()) {
             if (checkParams(req)) {
+                /*If the actual user has a permission and the parameters are not null, you get the actual user's ID. After that
+                you set the roletype and edit the ACTUAL USER's parameters(because there's no other IDs in the scope.*/
                 int id = actualUser.getId();
                 String role = req.getParameter("role");
                 boolean roletype = false;

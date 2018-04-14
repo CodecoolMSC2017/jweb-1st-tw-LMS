@@ -32,17 +32,16 @@ public class StudentsServlet extends HttpServlet {
                         for (String parameter : parameters) {
                             String param1 = parameter.split("=")[0];
                             int param2 = Integer.parseInt(parameter.split("=")[1]);
-                            if (!(param2 == actualUser.getId()) && !actualUser.getPermission()) {
-                                canEdit = false;
-                            } else if (param2 == actualUser.getId() || actualUser.getPermission()) {
+                            if (param2 == actualUser.getId() || actualUser.getPermission()) {
                                 canEdit = true;
                             }
                             req.setAttribute("canEdit", canEdit);
-                            if (param1.equals("userid")) {
+                            /*if (param1.equals("userid")) {
                                 User user = userServiceImpl.getUserById(param2);
                                 req.setAttribute("user", user);
-                                req.getRequestDispatcher("student.jsp").forward(req, resp);
-                            }
+
+                            }*/
+                            req.getRequestDispatcher("student.jsp").forward(req, resp);
                         }
                     }
                     req.setAttribute("users", users);
