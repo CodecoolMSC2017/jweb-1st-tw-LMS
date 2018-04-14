@@ -23,7 +23,8 @@ public class NewAssignmentServlet extends HttpServlet {
         ServletContext scx = req.getServletContext();
         CourseServiceImpl courseServiceImpl = (CourseServiceImpl)scx.getAttribute("courseServiceImpl");
         if (checkParams(req)) {
-            courseServiceImpl.addNewAssignment(req.getParameter("title"), req.getParameter("description"));
+            int max = Integer.parseInt(req.getParameter("max"));
+            courseServiceImpl.addNewAssignment(req.getParameter("title"), req.getParameter("description"), max);
             resp.sendRedirect("courses");
             //req.getRequestDispatcher("courses.jsp").forward(req, resp);
         }

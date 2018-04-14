@@ -26,7 +26,8 @@ public class SaveAssignmentServlet extends HttpServlet{
             int id = (Integer)req.getSession().getAttribute("id");
             boolean activity = (Boolean) req.getSession().getAttribute("act");
             String submission = (String) req.getSession().getAttribute("submission");
-            courseServiceImpl.editAssignment(id,req.getParameter("title"), req.getParameter("description"),activity, submission);
+            int max = Integer.parseInt(req.getParameter("max"));
+            courseServiceImpl.editAssignment(id,req.getParameter("title"), req.getParameter("description"),max,activity, submission);
             resp.sendRedirect("courses");
             //req.getRequestDispatcher("courses.jsp").forward(req, resp);
         }
