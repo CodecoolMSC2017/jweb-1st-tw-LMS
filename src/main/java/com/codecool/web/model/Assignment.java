@@ -6,14 +6,15 @@ public class Assignment extends Course {
     private int maxPoint;
     private int pointsGot;
 
-    public Assignment(String name, String desc) {
+    public Assignment(String name, String desc, int maxPoint) {
         super(name, desc);
-        this.maxPoint = 10;
+        this.maxPoint = maxPoint;
         this.pointsGot = 0;
     }
 
-    public Assignment(int id, String name, String desc, boolean isActive, int assignId, String submission) {
+    public Assignment(int id, String name, String desc,int maxPoint, boolean isActive, int assignId, String submission) {
         super(id, name, desc, isActive);
+        this.maxPoint = maxPoint;
         this.submission = submission;
     }
 
