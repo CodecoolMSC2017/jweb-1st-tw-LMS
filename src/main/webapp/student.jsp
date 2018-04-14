@@ -33,7 +33,7 @@
                 <li>email: <c:out value="${temp.email}"/></li>
                 <c:set var = "role" scope = "session" value = "${user.permission}"/>
                 <c:choose>
-                    <c:when test="${role != 'false'}">
+                    <c:when test="${role}">
                         <li>role: mentor</li>
                     </c:when>
                     <c:otherwise>

@@ -30,6 +30,9 @@
                 <h2>Task</h2>
                 <c:set var = "temp" scope = "session" value = "${course}"/>
                 <li>Task name: <c:out value="${temp.name}"/></li>
+                <c: if test="${temp['class'].simpleName == 'Assignment'}">
+                    <li>Max points: <c:out value="${temp.maxPoints}"/></li>
+                </c:if>
                 <li>Task description: <c:out value="${temp.desc}"/></li>
             </ul>
         </div>
