@@ -11,7 +11,7 @@ public class CourseServiceImpl implements CourseService {
     private List<Course> courses;
 
     public CourseServiceImpl() {
-        courses = new ArrayList<>();
+        courses = DataContainer.getInstance().getCoursesList();
     }
 
     public List<Course> getCourses() {
@@ -59,7 +59,7 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> availableCourses() {
         List<Course> result = new ArrayList<>();
         for (Course course : courses) {
-            if (course.getActive()) {
+            if (course.getIsActive()) {
                 result.add(course);
             }
         }

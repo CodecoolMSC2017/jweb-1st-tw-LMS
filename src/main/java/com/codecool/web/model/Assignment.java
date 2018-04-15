@@ -32,12 +32,8 @@ public class Assignment extends Course {
         return isActive;
     }
 
-    public int getMaxPoint() {
+    public int getMaxPoints() {
         return maxPoint;
-    }
-
-    public void setMaxPoint(int maxPoint) {
-        this.maxPoint = maxPoint;
     }
 
     public int getPointsGot() {

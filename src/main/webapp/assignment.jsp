@@ -27,10 +27,11 @@
         </div>
         <div class="container">
             <ul class="list">
-                <h2>Task</h2>
+                <h2>Assignment</h2>
                 <c:set var = "temp" scope = "session" value = "${course}"/>
-                <li>Task name: <c:out value="${temp.name}"/></li>
-                <li>Task description: <c:out value="${temp.desc}"/></li>
+                <li>Assignment name: <c:out value="${temp.name}"/></li>
+                <li>Assignment description: <c:out value="${temp.desc}"/></li>
+                <li>Assignment max points: <c:out value="${temp.maxPoints}"/></li>
                 <c:if test = "${not user.permission}" >
                     <input type="text" name="submission" value="submission"required>
                     <button type="submit">submit</button>

@@ -22,7 +22,7 @@ public class CoursesServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
         CourseServiceImpl courseServiceImpl = (CourseServiceImpl) scx.getAttribute("courseServiceImpl");
-        List<Course> courses = courseServiceImpl.getCourses();
+        List<Course> courses = DataContainer.getInstance().getCoursesList();
 
         List<Course> courseList;
         User actualUser = (User) req.getSession().getAttribute("user");

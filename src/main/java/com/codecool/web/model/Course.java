@@ -39,12 +39,12 @@ public class Course {
     }
 
 
-    public boolean getActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
     public void setActivity() {
-        if (getActive()) {
+        if (getIsActive()) {
             isActive = false;
         } else {
             isActive = true;
