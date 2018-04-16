@@ -3,6 +3,7 @@ package com.codecool.web.servlet;
 import com.codecool.web.model.Course;
 import com.codecool.web.model.User;
 import com.codecool.web.service.CourseServiceImpl;
+import com.codecool.web.service.GradingServiceImpl;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ public class AssignmentsServlet extends HttpServlet {
         ServletContext scx = req.getServletContext();
         CourseServiceImpl courseServiceImpl = (CourseServiceImpl) scx.getAttribute("courseServiceImpl");
         List<Course> courses = courseServiceImpl.getCourses();
-
+        GradingServiceImpl gradingService = new GradingServiceImpl();
         List<Course> courseList;
         User actualUser = (User) req.getSession().getAttribute("user");
         boolean permission = actualUser.getPermission();
@@ -45,7 +46,10 @@ public class AssignmentsServlet extends HttpServlet {
                 }
             }
             if (mode.equals("view")) {
+                boolean graded = gradingService.isGraded(actualUser.getId(),courseServiceImpl.getCourse(courseid));
+                req.setAttribute("graded",graded);
                 req.setAttribute("course", courseServiceImpl.getCourse(courseid));
+
                 req.getRequestDispatcher("assignment.jsp").forward(req, resp);
             } else if (mode.equals("new") || mode.equals("edit")) {
                 req.setAttribute("mode", mode);
