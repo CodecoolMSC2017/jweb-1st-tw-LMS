@@ -34,7 +34,7 @@
                 <li>Assignment max points: <c:out value="${temp.maxPoints}"/></li>
                 <c:if test = "${not user.permission}" >
                     <c:choose>
-                        <c:when test="${not graded}">
+                        <c:when test="${not submitted}">
                             <form method="POST" action="collectassignment">
                                 <input type="text" name="submission" value="submission"required>
                                 <c:set var="submittedAssign" value="${course}" scope="session"/>

@@ -41,7 +41,7 @@
                     </c:otherwise>
                 </c:choose>
                 <c:if test= "${canEdit}">
-                    <a href="edituser">Edit profile</a>
+                    <a href="edituser.jsp">Edit profile</a>
                 </c:if>
             </ul>
         </div>

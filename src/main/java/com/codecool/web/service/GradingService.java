@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 import com.codecool.web.model.Assignment;
+import com.codecool.web.model.Course;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public interface GradingService {
 
     Assignment getOneAssignment(int studentId, int assignId);
 
+    boolean isSubmitted(int studentId, Course openedCourse);
 }
 
 

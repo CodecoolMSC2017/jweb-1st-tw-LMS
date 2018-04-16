@@ -29,15 +29,30 @@
             <div class="editform">
                 <form method="POST" action="edituser">
                     <h2>edit user</h2>
-                    <input type="text" name="e-mail" value ="<c:out value="${user.email}"/>" required>
-                    <input type="text" name="password" value ="<c:out value="${user.password}"/>" required>
-                    <c:if test = "${user.permission == 'true'}">
-                        <p>Role:
-                        <select name="role" id="role">
-                            <option value="student">Student</option>
-                            <option value="mentor">Mentor</option>
-                        </select><br></p>
-                    </c:if>
+                    <c:choose>
+                        <c:when test = "${not canEdit}">
+                            <input type="text" name="e-mail" value ="<c:out value="${temp.email}"/>" required>
+                            <input type="text" name="password" value ="<c:out value="${temp.password}"/>" required>
+                            <c:if test = "${user.permission == 'true'}">
+                                <p>Role:
+                                <select name="role" id="role">
+                                    <option value="student">Student</option>
+                                    <option value="mentor">Mentor</option>
+                                </select><br></p>
+                            </c:if>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="text" name="e-mail" value ="<c:out value="${user.email}"/>" required>
+                            <input type="text" name="password" value ="<c:out value="${user.password}"/>" required>
+                            <c:if test = "${user.permission == 'true'}">
+                                <p>Role:
+                                <select name="role" id="role">
+                                    <option value="student">Student</option>
+                                    <option value="mentor">Mentor</option>
+                                </select><br></p>
+                            </c:if>
+                        </c:otherwise>
+                    </c:choose>
                     <button class="button" type="submit" value="Save">Submit</button>
                 </form>
             </ul>
