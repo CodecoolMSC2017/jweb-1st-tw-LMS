@@ -21,7 +21,7 @@ public class NewAssignmentServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
-        CourseServiceImpl courseServiceImpl = (CourseServiceImpl)scx.getAttribute("courseServiceImpl");
+        CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
         if (checkParams(req)) {
             int max = Integer.parseInt(req.getParameter("max"));
             courseServiceImpl.addNewAssignment(req.getParameter("title"), req.getParameter("description"), max);

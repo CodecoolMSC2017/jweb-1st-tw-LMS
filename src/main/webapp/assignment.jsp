@@ -37,7 +37,6 @@
                         <c:when test="${not graded}">
                             <form method="POST" action="collectassignment">
                                 <input type="text" name="submission" value="submission"required>
-
                                 <c:set var="submittedAssign" value="${course}" scope="session"/>
                                 <button type="submit">submit</button>
                             </form>

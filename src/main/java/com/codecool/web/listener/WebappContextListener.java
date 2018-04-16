@@ -18,12 +18,12 @@ public final class WebappContextListener implements ServletContextListener {
 
         ServletContext cntxt = sce.getServletContext();
         DataContainer dataContainer = DataContainer.getInstance();
-        CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
+        //CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
         UserServiceImpl userServiceImpl = new UserServiceImpl();
         userServiceImpl.addNewUser(new User(1, "admin", "admin@admin.com", "admin", true));
 
         cntxt.setAttribute("dataContainer", dataContainer);
-        cntxt.setAttribute("courseServiceImpl", courseServiceImpl);
+        //cntxt.setAttribute("courseServiceImpl", courseServiceImpl);
 
     }
 

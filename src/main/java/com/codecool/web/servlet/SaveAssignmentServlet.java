@@ -21,7 +21,7 @@ public class SaveAssignmentServlet extends HttpServlet{
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
-        CourseServiceImpl courseServiceImpl = (CourseServiceImpl)scx.getAttribute("courseServiceImpl");
+        CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
         if (checkParams(req)) {
             int id = (Integer)req.getSession().getAttribute("id");
             boolean activity = (Boolean) req.getSession().getAttribute("act");

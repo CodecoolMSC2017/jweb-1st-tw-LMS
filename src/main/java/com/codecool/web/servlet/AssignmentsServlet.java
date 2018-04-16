@@ -19,7 +19,7 @@ import java.util.List;
 public class AssignmentsServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
-        CourseServiceImpl courseServiceImpl = (CourseServiceImpl) scx.getAttribute("courseServiceImpl");
+        CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
         List<Course> courses = courseServiceImpl.getCourses();
         GradingServiceImpl gradingService = new GradingServiceImpl();
         List<Course> courseList;

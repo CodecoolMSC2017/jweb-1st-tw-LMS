@@ -19,7 +19,7 @@ public class NewCourseServlet  extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
-        CourseServiceImpl courseServiceImpl = (CourseServiceImpl)scx.getAttribute("courseServiceImpl");
+        CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
         if (checkParams(req)) {
             courseServiceImpl.addNewCourse(req.getParameter("title"), req.getParameter("description"));
             resp.sendRedirect("courses");
