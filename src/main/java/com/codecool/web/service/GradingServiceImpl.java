@@ -1,6 +1,8 @@
 package com.codecool.web.service;
 
 import com.codecool.web.model.Assignment;
+import com.codecool.web.model.Course;
+import com.codecool.web.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +17,32 @@ public class GradingServiceImpl implements GradingService {
         this.sentAssignments = DataContainer.getInstance().getSentAssignments();
     }
 
+    // TODO clean up all sysoutprints
     public void addNewAssignment(int studentId, Assignment assignment) {
-        for (int id : sentAssignments.keySet()) {
-            if (id == studentId) {
-                List<Assignment> usersAssignments = sentAssignments.get(id);
-                usersAssignments.add(assignment);
-                sentAssignments.put(id, usersAssignments);
-            } else {
-                List<Assignment> usersAssignments = new ArrayList<>();
-                usersAssignments.add(assignment);
-                sentAssignments.put(id, usersAssignments);
+        if(sentAssignments.size()> 0) {
+            for (int id : sentAssignments.keySet()) {
+                if (id == studentId) {
+                    List<Assignment> usersAssignments = sentAssignments.get(id);
+                    usersAssignments.add(assignment);
+                    sentAssignments.put(id, usersAssignments);
+                    System.out.println("\nNew key added: "+ studentId+"\n");
+                    System.out.println("Updated student id :" + id + "List size: " + sentAssignments.get(id).size());
+                } else {
+                    List<Assignment> usersAssignments = new ArrayList<>();
+                    usersAssignments.add(assignment);
+                    sentAssignments.put(studentId, usersAssignments);
+                    System.out.println("\nNew key added: "+ studentId+"\n");
+                    System.out.println("New student id :" + studentId + "List size: " + sentAssignments.get(studentId).size());
+                }
             }
+        } else {
+            List<Assignment> usersAssignments = new ArrayList<>();
+            usersAssignments.add(assignment);
+            sentAssignments.put(studentId, usersAssignments);
+            System.out.println("New assignment id :" + studentId + "List size: " + sentAssignments.get(studentId).size());
         }
     }
+
 
     public List<Assignment> getStudentsAssignments(int studentId) {
         for (int id : sentAssignments.keySet()) {
@@ -46,6 +61,19 @@ public class GradingServiceImpl implements GradingService {
             }
         }
         return null;
+    }
+
+    public boolean isGraded(int studentId, Course openedCourse) {
+        List<Assignment> sentByStudent = getStudentsAssignments(studentId);
+        if(sentByStudent != null) {
+            for(Assignment assignment : sentByStudent) {
+                if(assignment.getId() == openedCourse.getId()) {
+                    return true;
+                }
+
+            }
+        }
+        return false;
     }
 }
 
