@@ -33,8 +33,19 @@
                 <li>Assignment description: <c:out value="${temp.desc}"/></li>
                 <li>Assignment max points: <c:out value="${temp.maxPoints}"/></li>
                 <c:if test = "${not user.permission}" >
-                    <input type="text" name="submission" value="submission"required>
-                    <button type="submit">submit</button>
+                    <c:choose>
+                        <c:when test="${not graded}">
+                            <form method="POST" action="collectassignment">
+                                <input type="text" name="submission" value="submission"required>
+
+                                <c:set var="submittedAssign" value="${course}" scope="session"/>
+                                <button type="submit">submit</button>
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                            <p>You are already submitted this assignment!</p>
+                        </c:otherwise>
+                    </c:choose>
                 </c:if>
             </ul>
         </div>
