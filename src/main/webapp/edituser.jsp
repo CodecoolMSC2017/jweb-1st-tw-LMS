@@ -31,6 +31,7 @@
                     <h2>edit user</h2>
                     <c:choose>
                         <c:when test = "${not canEdit}">
+                            <input type="hidden" name="id" value ="<c:out value="${temp.id}"/>" required>
                             <input type="text" name="e-mail" value ="<c:out value="${temp.email}"/>" required>
                             <input type="text" name="password" value ="<c:out value="${temp.password}"/>" required>
                             <c:if test = "${user.permission == 'true'}">
@@ -42,6 +43,7 @@
                             </c:if>
                         </c:when>
                         <c:otherwise>
+                            <input type="hidden" name="id" value ="<c:out value="${temp.id}"/>" required>
                             <input type="text" name="e-mail" value ="<c:out value="${user.email}"/>" required>
                             <input type="text" name="password" value ="<c:out value="${user.password}"/>" required>
                             <c:if test = "${user.permission == 'true'}">

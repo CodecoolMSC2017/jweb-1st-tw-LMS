@@ -34,7 +34,8 @@ public class SaveUserServlet extends HttpServlet{
                 if (role.equals("mentor")) {
                     roletype = true;
                 }
-                userServiceImpl.editUser(id, req.getParameter("e-mail"), req.getParameter("password"), roletype);
+                int userId = Integer.parseInt(req.getParameter("id"));
+                userServiceImpl.editUser(userId, req.getParameter("e-mail"), req.getParameter("password"), roletype);
                 resp.sendRedirect("users");
             }
         } else {
