@@ -46,8 +46,8 @@ public class AssignmentsServlet extends HttpServlet {
                 }
             }
             if (mode.equals("view")) {
-                boolean graded = gradingService.isGraded(actualUser.getId(),courseServiceImpl.getCourse(courseid));
-                req.setAttribute("graded",graded);
+                boolean submitted = gradingService.isSubmitted(actualUser.getId(),courseServiceImpl.getCourse(courseid));
+                req.setAttribute("submitted",submitted);
                 req.setAttribute("course", courseServiceImpl.getCourse(courseid));
 
                 req.getRequestDispatcher("assignment.jsp").forward(req, resp);

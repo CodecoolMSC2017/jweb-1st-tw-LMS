@@ -63,7 +63,7 @@ public class GradingServiceImpl implements GradingService {
         return null;
     }
 
-    public boolean isGraded(int studentId, Course openedCourse) {
+    public boolean isSubmitted(int studentId, Course openedCourse) {
         List<Assignment> sentByStudent = getStudentsAssignments(studentId);
         if(sentByStudent != null) {
             for(Assignment assignment : sentByStudent) {
