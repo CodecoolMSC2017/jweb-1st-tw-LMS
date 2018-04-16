@@ -22,6 +22,7 @@ public class SaveUserServlet extends HttpServlet{
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User actualUser = (User) req.getSession().getAttribute("user");
+        User profile = (User) req.getSession().getAttribute("temp");
         UserServiceImpl userServiceImpl = new UserServiceImpl();
         if (actualUser.getPermission()) {
             if (checkParams(req)) {
@@ -46,6 +47,8 @@ public class SaveUserServlet extends HttpServlet{
     }
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User actualUser = (User) req.getSession().getAttribute("user");
+        User profile = (User) req.getSession().getAttribute("temp");
+
         List<User> userses = DataContainer.getInstance().getUsersList();
         if (actualUser.getName() != null) {
             for (User userList : userses) {
