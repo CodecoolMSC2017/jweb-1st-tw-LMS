@@ -36,11 +36,11 @@ public class StudentsServlet extends HttpServlet {
                                 canEdit = true;
                             }
                             req.setAttribute("canEdit", canEdit);
-                            /*if (param1.equals("userid")) {
+                            if (param1.equals("userid")) {
                                 User user = userServiceImpl.getUserById(param2);
                                 req.setAttribute("user", user);
 
-                            }*/
+                            }
                             req.getRequestDispatcher("student.jsp").forward(req, resp);
                         }
                     }
