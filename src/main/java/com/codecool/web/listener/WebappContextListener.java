@@ -59,7 +59,7 @@ public final class WebappContextListener implements ServletContextListener {
             */
             Context initCtx = new InitialContext();
             Context envCtx = (Context) initCtx.lookup("java:comp/env");
-            DataSource dataSource = (DataSource) envCtx.lookup("jdbc/database");
+            DataSource dataSource = (DataSource) envCtx.lookup("jdbc/com.codecool.web.dao.database");
             ServletContext servletCtx = sce.getServletContext();
             servletCtx.setAttribute("dataSource", dataSource);
             return dataSource;
@@ -71,9 +71,9 @@ public final class WebappContextListener implements ServletContextListener {
 
     private void runDatabaseInitScript(DataSource dataSource, String resource) {
         /*
-            A new Connection is obtained to the database to run the initialization
+            A new Connection is obtained to the com.codecool.web.dao.database to run the initialization
             script on startup. Because of the try-with-resource construct the
-            database connection is automatically closed at the end of the try-catch
+            com.codecool.web.dao.database connection is automatically closed at the end of the try-catch
             block.
         */
         try (Connection connection = dataSource.getConnection()) {
