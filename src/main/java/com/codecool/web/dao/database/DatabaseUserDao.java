@@ -1,4 +1,4 @@
-package com.codecool.web.dao.database;
+package com.codecool.web.dao.database;  
 
 import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;

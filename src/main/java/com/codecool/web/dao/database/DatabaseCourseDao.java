@@ -1,12 +1,13 @@
 package com.codecool.web.dao.database;
 
 import com.codecool.web.model.Course;
+import com.codecool.web.dao.CourseDao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseCourseDao extends AbstractDao {
+public class DatabaseCourseDao extends AbstractDao implements CourseDao{
 
     public DatabaseCourseDao (Connection connection) {
         super(connection);
