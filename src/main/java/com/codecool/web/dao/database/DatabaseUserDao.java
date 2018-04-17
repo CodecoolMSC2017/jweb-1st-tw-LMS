@@ -2,7 +2,6 @@ package com.codecool.web.dao.database;
 
 import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
-import com.codecool.web.service.RegisterServiceImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,7 +58,7 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
         return null;
     }
 
-    public User findByid(int id) throws SQLException {
+    public User findById(int id) throws SQLException {
         String sql = "SELECT id, name, email, password FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
@@ -109,7 +108,6 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
             statement.setInt(3, id);
             executeInsert(statement);
             connection.commit();
-
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
