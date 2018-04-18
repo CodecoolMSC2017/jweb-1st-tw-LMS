@@ -49,7 +49,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
         return null;
     }
 
-    public void add(String name, String description, boolean isActive) throws SQLException {
+    public void addCourse(String name, String description, boolean isActive) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         String sql = "INSERT INTO courses (name, description, is_active) VALUES (?, ?, ?)";
@@ -70,7 +70,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
     public void remove(int id) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "DELETE * from courses WHERE id = ?";
+        String sql = "DELETE FROM courses WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setInt(1, id);
             connection.commit();
@@ -100,4 +100,39 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
         }
     }
 
+    public void addAssignment(String name, String description, int maxPoint) throws SQLException {
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "INSERT INTO courses (name, description, is_active) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+            statement.setString(1, name);
+            statement.setString(2, description);
+            statement.setInt(3, maxPoint);
+            int id = fetchGeneratedId(statement);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+
+    public void editAssignment(int id, String name, String description, int maxPoint) throws SQLException {
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "Update * from courses WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+            statement.setInt(1, id);
+            statement.setString(2, name);
+            statement.setString(3, description);
+            statement.setInt(4, maxPoint);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
 }

@@ -10,9 +10,14 @@ public interface CourseDao {
 
     Course findById(int id) throws SQLException ;
 
-    void add(String name, String description, boolean isActive) throws SQLException ;
+    void addCourse(String name, String description, boolean isActive) throws SQLException ;
 
     void remove(int id) throws SQLException ;
 
     void editCourse(int id, String name, String description, boolean isActive) throws SQLException ;
+
+    void addAssignment(String name, String description, int maxPoint) throws SQLException ;
+
+    void editAssignment(int id, String name, String description, int maxPoint) throws SQLException ;
+
 }

@@ -9,7 +9,7 @@ public class Course {
     boolean isActive;
 
     public Course(String name, String desc) {
-        this.id = generateId();
+        this.id = id;
         this.name = name;
         this.desc = desc;
         this.isActive = false;
@@ -26,9 +26,6 @@ public class Course {
         return id;
     }
 
-    public int generateId() {
-        return new Random().nextInt(100000)+1;
-    }
 
     public String getName() {
         return name;
