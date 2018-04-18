@@ -1,6 +1,8 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.service.RegisterService;
+import com.codecool.web.exceptions.AlreadyExistsException;
+import com.codecool.web.exceptions.NotValidEmailException;
+import com.codecool.web.exceptions.EmptyFieldException;
 import com.codecool.web.service.RegisterServiceImpl;
 import com.codecool.web.service.UserServiceImpl;
 
@@ -19,24 +21,23 @@ public class RegisterServlet extends HttpServlet {
         ServletContext scx = request.getServletContext();
         UserServiceImpl userServiceImpl = new UserServiceImpl();
         RegisterServiceImpl regService = new RegisterServiceImpl();
-        String result;
-        if (regService.checkParams(request)) {
-            if(!userServiceImpl.authenticateUser(request.getParameter("name"),request.getParameter("password"))) {
-                /*String username = ;
-                String email = ;
-                String password = ;*/
-                result = userServiceImpl.register(request.getParameter("name"), request.getParameter("mail"), request.getParameter("password"), regService.isMentor(request));
+        String result = null;
 
+            try {
+                regService.checkParams(request);
+                userServiceImpl.register(request.getParameter("name"), request.getParameter("mail"), request.getParameter("password"), regService.isMentor(request));
+            } catch (NotValidEmailException e) {
+                result = e.getMessage();
+            } catch (AlreadyExistsException e) {
+                result = e.getMessage();
                 request.setAttribute("result", result);
+            } catch (EmptyFieldException e) {
+                result = e.getMessage();
+            } finally {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-            }else {
-                result = "User " + request.getParameter("name") +" is already exists!";
             }
-        } else {
-            result = "please fill every fields";
-        }
-        request.setAttribute("result", result);
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
