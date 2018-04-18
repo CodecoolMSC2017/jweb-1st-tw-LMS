@@ -1,11 +1,25 @@
 package com.codecool.web.service;
 
-import javax.servlet.http.HttpServletRequest;
+import com.codecool.web.dao.UserDao;
+import com.codecool.web.model.User;
+
+import javax.security.auth.login.LoginException;
+import java.sql.SQLException;
 
 public class LoginServiceImpl implements LoginService{
 
-    public boolean checkParams(HttpServletRequest req) {
-        return req.getParameter("account") !=null && req.getParameter("pass") !=null &&
-                !req.getParameter("account").equals("") && !req.getParameter("pass").equals("");
+    private final UserDao userDao;
+
+    public LoginServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Override
+    public User loginUser(String name, String password) throws SQLException, LoginException {
+        User user = userDao.findByName(name);
+        if (user == null || !user.getPassword().equals(password)) {
+            throw new LoginException("Incorrect log in");
+        }
+        return user;
     }
 }
