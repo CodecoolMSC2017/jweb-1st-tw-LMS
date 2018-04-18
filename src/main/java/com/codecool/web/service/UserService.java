@@ -1,5 +1,7 @@
 package com.codecool.web.service;
 
+import com.codecool.web.exceptions.AlreadyExistsException;
+import com.codecool.web.exceptions.NotValidEmailException;
 import com.codecool.web.model.User;
 
 import java.util.List;
@@ -13,7 +15,7 @@ public interface UserService {
 
     User getUser(String name);
 
-    String register(String name, String email, String password, boolean isMentor);
+    void register(String name, String email, String password, boolean isMentor) throws AlreadyExistsException, NotValidEmailException;
 
     int generateId();
 

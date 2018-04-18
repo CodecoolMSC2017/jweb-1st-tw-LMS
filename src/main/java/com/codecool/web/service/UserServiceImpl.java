@@ -1,5 +1,7 @@
 package com.codecool.web.service;
 
+import com.codecool.web.exceptions.AlreadyExistsException;
+import com.codecool.web.exceptions.NotValidEmailException;
 import com.codecool.web.model.User;
 
 import java.util.List;
@@ -30,32 +32,30 @@ public class UserServiceImpl implements UserService {
         return loginUser;
     }
 
-    public String register(String name, String email, String password, boolean isMentor) {
-        String message = "";
+    public void register(String name, String email, String password, boolean isMentor) throws AlreadyExistsException, NotValidEmailException {
         System.out.println("userservice: name " + name + " email " + email + " pw " + password);
         if (users.size() > 0) {
             System.out.println(users.size());
-            User tempUser = new User(0,"","","",isMentor);
+            User tempUser = null;
             for (User user : users) {
                 System.out.println(user.getName());
                 if (user.getName().equals(name)) {
-                    message = "this name already in use";
+                    throw new AlreadyExistsException("this name already in use");
                 } else if (user.getEmail().equals(email)) {
-                    message = "this email already in use";
-                } else if (!user.getEmail().contains("@")){
-                    message = "That is not a valid e-mail";
+                    throw new AlreadyExistsException("this email already in use");
+                } else if (!email.contains("@")) {
+                    throw new NotValidEmailException("That is not a valid e-mail");
                 } else {
-                    tempUser = new User(generateId(), name, email, password, isMentor);
-                    message = "success";
+                    tempUser = (new User(generateId(), name, email, password, isMentor));
                 }
             }
             users.add(tempUser);
         } else {
-            User newUser = new User(generateId(), name, email, password, isMentor);
-            users.add(newUser);
-            message = "success";
+            users.add(new User(generateId(), name, email, password, isMentor));
+
+
         }
-        return message;
+
     }
 
     public int generateId() {
