@@ -2,8 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.exceptions.AlreadyExistsException;
 import com.codecool.web.exceptions.NotValidEmailException;
-import com.codecool.web.service.EmptyfieldException;
-import com.codecool.web.service.RegisterService;
+import com.codecool.web.exceptions.EmptyFieldException;
 import com.codecool.web.service.RegisterServiceImpl;
 import com.codecool.web.service.UserServiceImpl;
 
@@ -32,7 +31,7 @@ public class RegisterServlet extends HttpServlet {
             } catch (AlreadyExistsException e) {
                 result = e.getMessage();
                 request.setAttribute("result", result);
-            } catch (EmptyfieldException e) {
+            } catch (EmptyFieldException e) {
                 result = e.getMessage();
             } finally {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
