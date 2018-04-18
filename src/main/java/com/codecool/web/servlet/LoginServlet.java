@@ -18,12 +18,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends AbstractServlet {
 
-    private Connection getConnection(ServletContext sce) throws SQLException {
-        DataSource dataSource = (DataSource) sce.getAttribute("dataSource");
-        return dataSource.getConnection();
-    }
+
 
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
