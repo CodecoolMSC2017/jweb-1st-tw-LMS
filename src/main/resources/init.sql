@@ -1,9 +1,9 @@
 /*
     Database initialization script that runs on every web-application redeployment.
 */
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS courses;
 DROP TABLE IF EXISTS assignments;
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
