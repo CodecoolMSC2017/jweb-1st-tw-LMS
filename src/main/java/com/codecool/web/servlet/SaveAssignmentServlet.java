@@ -1,7 +1,10 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.CourseDao;
+import com.codecool.web.dao.database.DatabaseCourseDao;
 import com.codecool.web.model.Course;
 import com.codecool.web.service.CourseServiceImpl;
+import com.codecool.web.service.CoursesServiceDB;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,10 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 
 @WebServlet("/saveassignment")
-public class SaveAssignmentServlet extends HttpServlet{
+public class SaveAssignmentServlet extends AbstractServlet{
     public boolean checkParams(HttpServletRequest req) {
         return req.getParameter("title") !=null && req.getParameter("description") !=null &&
                 !req.getParameter("description").equals("") && !req.getParameter("title").equals("");
@@ -21,16 +26,22 @@ public class SaveAssignmentServlet extends HttpServlet{
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
-        CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
-        if (checkParams(req)) {
-            int id = (Integer)req.getSession().getAttribute("id");
-            boolean activity = (Boolean) req.getSession().getAttribute("act");
-            String submission = (String) req.getSession().getAttribute("submission");
-            int max = Integer.parseInt(req.getParameter("max"));
-            courseServiceImpl.editAssignment(id,req.getParameter("title"), req.getParameter("description"),max,activity, submission);
-            resp.sendRedirect("courses");
-            //req.getRequestDispatcher("courses.jsp").forward(req, resp);
+        CoursesServiceDB courseService = new CoursesServiceDB();
+        try (Connection connection = getConnection(scx)) {
+            CourseDao courseDao = new DatabaseCourseDao(connection);
+            if (checkParams(req)) {
+                int id = (Integer)req.getSession().getAttribute("id");
+                boolean activity = (Boolean) req.getSession().getAttribute("act");
+                String submission = (String) req.getSession().getAttribute("submission");
+                int max = Integer.parseInt(req.getParameter("max"));
+                courseService.editAssignment(id,req.getParameter("title"), req.getParameter("description"),max, courseDao);
+                resp.sendRedirect("courses");
+                //req.getRequestDispatcher("courses.jsp").forward(req, resp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
 }
 
