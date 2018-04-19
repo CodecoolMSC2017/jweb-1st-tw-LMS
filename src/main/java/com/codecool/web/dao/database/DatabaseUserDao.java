@@ -59,7 +59,7 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
     }
 
     public User findById(int id) throws SQLException {
-        String sql = "SELECT id, name, email, password, permission FROM users WHERE id = ?";
+        String sql = "SELECT id, name, email, password, permission   FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -83,7 +83,7 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
             statement.setString(2, email);
             statement.setString(3, password);
             statement.setBoolean(4, permission);
-            executeInsert(statement);
+            statement.executeUpdate();
             int id = fetchGeneratedId(statement);
             connection.commit();
             return new User(id, name, email, password, permission);
