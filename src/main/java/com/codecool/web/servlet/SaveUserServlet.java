@@ -15,7 +15,7 @@ import java.util.List;
 
 @WebServlet("/edituser")
 public class SaveUserServlet extends HttpServlet{
-    public boolean checkParams(HttpServletRequest req) {
+    private boolean checkParams(HttpServletRequest req) {
         return req.getParameter("e-mail") !=null && req.getParameter("password") !=null &&
                 !req.getParameter("e-mail").equals("") && !req.getParameter("password").equals("");
     }
@@ -50,9 +50,9 @@ public class SaveUserServlet extends HttpServlet{
         User actualUser = (User) req.getSession().getAttribute("user");
         User profile = (User) req.getSession().getAttribute("temp");
 
-        List<User> userses = DataContainer.getInstance().getUsersList();
+        List<User> listOfUsers = DataContainer.getInstance().getUsersList();
         if (actualUser.getName() != null) {
-            for (User userList : userses) {
+            for (User userList : listOfUsers) {
                 if (userList.getName().equals(actualUser.getName())) {
                     req.setAttribute("user", actualUser);
                     req.getRequestDispatcher("edituser.jsp").forward(req, resp);

@@ -32,9 +32,8 @@ public class RegisterServlet extends AbstractServlet {
             UserDao userDao = new DatabaseUserDao(connection);
             RegisterServiceImpl regService = new RegisterServiceImpl();
             regService.checkParams(request);
-            regService.checkEmail(request);
             userDb.register(request.getParameter("name"), request.getParameter("mail"), request.getParameter("password"), regService.isMentor(request), userDao);
-            System.out.println("regservlet: name: " + request.getParameter("name") + " email: " + request.getParameter("mail") + " pw: " + request.getParameter("password"));
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (AlreadyExistsException e) {
