@@ -14,10 +14,7 @@ public interface UserServiceTwo {
     List<User> getUsers(UserDao userDao) throws SQLException;
 
 
-    void addNewUser(User newUser);
-
-
-    User getUser(String name);
+    User getUser(String name, UserDao userDao) throws SQLException;
 
 
     void register(String name, String email, String password, boolean isMentor, UserDao userDao) throws AlreadyExistsException, NotValidEmailException, SQLException;

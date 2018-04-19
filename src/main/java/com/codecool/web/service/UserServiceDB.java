@@ -10,32 +10,25 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserServiceDB implements UserServiceTwo{
+public class UserServiceDB implements UserServiceTwo {
 
-    
+    @Override
     public List<User> getUsers(UserDao userDao) throws SQLException {
-
        return userDao.findAll();
     }
 
-    
-    public void addNewUser(User newUser) {
-
-
+    @Override
+    public User getUser(String name,UserDao userDao) throws SQLException {
+        return userDao.findByName(name);
     }
 
-    
-    public User getUser(String name) {
-        return null;
-    }
-
-    
+    @Override
     public void register(String name, String email, String password, boolean isMentor, UserDao userDao) throws AlreadyExistsException, NotValidEmailException, SQLException {
         userDao.registerUser(name,email,password,isMentor);
     }
     
 
-    
+    @Override
     public User getUserById(int id, UserDao userDao) throws SQLException {
         return userDao.findById(id);
     }
