@@ -28,4 +28,6 @@ public interface CourseDao {
 
     List<Assignment> findAllAssignment() throws SQLException ;
 
+    void setActivity(int id, boolean isActive) throws SQLException ;
+
 }
