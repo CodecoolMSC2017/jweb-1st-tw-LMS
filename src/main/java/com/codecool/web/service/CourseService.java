@@ -20,7 +20,7 @@ public interface CourseService {
 
     void removeCourse(int id);
 
-    public void editAssignment(int id, String title,String desc,int newMaxPt, boolean activity, String submission);
+    void editAssignment(int id, String title,String desc,int newMaxPt, boolean activity, String submission);
 }
 
 
