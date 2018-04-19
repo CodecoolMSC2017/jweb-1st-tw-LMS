@@ -144,7 +144,9 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
     public void removeAssignment(int id) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "DELETE FROM assignments WHERE id = ?";
+        String sql = "DELETE FROM submissions WHERE id = ?" +
+                "DELETE FROM assignments WHERE id = ?" +
+                "DELETE FROM courses WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setInt(1, id);
             connection.commit();
