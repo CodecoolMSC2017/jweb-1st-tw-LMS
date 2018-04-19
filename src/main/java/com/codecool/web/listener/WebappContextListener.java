@@ -24,16 +24,16 @@ public final class WebappContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 
-        ServletContext cntxt = sce.getServletContext();
-        DataContainer dataContainer = DataContainer.getInstance();
+        //ServletContext cntxt = sce.getServletContext();
+        //DataContainer dataContainer = DataContainer.getInstance();
         //CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
-        UserServiceImpl userServiceImpl = new UserServiceImpl();
-        userServiceImpl.addNewUser(new User(1, "admin", "admin@admin.com", "admin", true));
+        //UserServiceImpl userServiceImpl = new UserServiceImpl();
+        //userServiceImpl.addNewUser(new User(1, "admin", "admin@admin.com", "admin", true));
 
         DataSource dataSource = putDataSourceToServletContext(sce);
         runDatabaseInitScript(dataSource, "/init.sql");
 
-        cntxt.setAttribute("dataContainer", dataContainer);
+        //cntxt.setAttribute("dataContainer", dataContainer);
         //cntxt.setAttribute("courseServiceImpl", courseServiceImpl);
 
 
