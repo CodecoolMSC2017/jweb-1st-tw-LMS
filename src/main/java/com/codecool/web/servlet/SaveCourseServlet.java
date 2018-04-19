@@ -29,11 +29,11 @@ public class SaveCourseServlet extends AbstractServlet{
         try (Connection connection = getConnection(scx)) {
             CoursesServiceDB coursesServiceDB = new CoursesServiceDB();
             CourseDao courseDao = new DatabaseCourseDao(connection);
-            CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
             if (checkParams(req)) {
-                int id = (Integer)req.getSession().getAttribute("id");
-                boolean activity = (Boolean) req.getSession().getAttribute("act");
-                coursesServiceDB.editCourse(id,req.getParameter("title"), req.getParameter("description"), activity, courseDao);
+
+                String title = req.getParameter("title");
+                Course oldCourse = coursesServiceDB.getCourseByName(title, courseDao);
+                coursesServiceDB.editCourse(oldCourse.getId(),req.getParameter("title"), req.getParameter("description"), oldCourse.getIsActive(), courseDao);
                 resp.sendRedirect("courses");
                 //req.getRequestDispatcher("courses.jsp").forward(req, resp);
             }
