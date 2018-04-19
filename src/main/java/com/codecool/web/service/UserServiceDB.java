@@ -14,22 +14,26 @@ public class UserServiceDB implements UserServiceTwo {
 
     @Override
     public List<User> getUsers(UserDao userDao) throws SQLException {
-       return userDao.findAll();
+        return userDao.findAll();
     }
 
     @Override
-    public User getUser(String name,UserDao userDao) throws SQLException {
+    public User getUser(String name, UserDao userDao) throws SQLException {
         return userDao.findByName(name);
     }
 
     @Override
     public void register(String name, String email, String password, boolean isMentor, UserDao userDao) throws AlreadyExistsException, NotValidEmailException, SQLException {
-        userDao.registerUser(name,email,password,isMentor);
+        userDao.registerUser(name, email, password, isMentor);
     }
-    
+
 
     @Override
     public User getUserById(int id, UserDao userDao) throws SQLException {
         return userDao.findById(id);
+    }
+
+    public void editUser(String email, String password, Boolean permission, int id, UserDao userDao) throws SQLException {
+        userDao.editUser(email, password, permission, id);
     }
 }
