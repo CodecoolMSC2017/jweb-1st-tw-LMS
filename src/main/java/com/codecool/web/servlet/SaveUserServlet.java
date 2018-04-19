@@ -27,9 +27,11 @@ public class SaveUserServlet extends AbstractServlet {
         User actualUser = (User) req.getSession().getAttribute("user");
         UserServiceDB userServiceDB = new UserServiceDB();
         ServletContext scx = req.getServletContext();
-        String role = req.getParameter("role");
-        boolean roleType = role.equals("mentor");
-        //roleType = role.equals("mentor");
+        Boolean role = actualUser.getPermission();
+        boolean roleType = false;
+        if (role.equals(true)){
+            roleType = true;
+        }
         try (Connection connection = getConnection(scx)) {
             UserDao userDao = new DatabaseUserDao(connection);
             if (actualUser.getPermission()) {
