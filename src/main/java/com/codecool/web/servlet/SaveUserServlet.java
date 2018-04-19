@@ -1,63 +1,73 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.UserDao;
+import com.codecool.web.dao.database.DatabaseUserDao;
 import com.codecool.web.model.User;
-import com.codecool.web.service.DataContainer;
-import com.codecool.web.service.UserServiceImpl;
+import com.codecool.web.service.UserServiceDB;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 
 @WebServlet("/edituser")
-public class SaveUserServlet extends HttpServlet{
+public class SaveUserServlet extends AbstractServlet {
     private boolean checkParams(HttpServletRequest req) {
-        return req.getParameter("e-mail") !=null && req.getParameter("password") !=null &&
-                !req.getParameter("e-mail").equals("") && !req.getParameter("password").equals("");
+        return req.getParameter("e-mail") != null && req.getParameter("password") != null &&
+            !req.getParameter("e-mail").equals("") && !req.getParameter("password").equals("");
     }
 
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User actualUser = (User) req.getSession().getAttribute("user");
-        User profile = (User) req.getSession().getAttribute("temp");
-        UserServiceImpl userServiceImpl = new UserServiceImpl();
-        if (actualUser.getPermission()) {
-            if (checkParams(req)) {
-                /*If the actual user has a permission and the parameters are not null, you get the actual user's ID. After that
-                you set the roletype and edit the ACTUAL USER's parameters(because there's no other IDs in the scope.*/
-                int id = actualUser.getId();
-                String role = req.getParameter("role");
-                boolean roletype = false;
-                if (role.equals("mentor")) {
-                    roletype = true;
+        UserServiceDB userServiceDB = new UserServiceDB();
+        ServletContext scx = req.getServletContext();
+        String role = req.getParameter("role");
+        boolean roleType = role.equals("mentor");
+        //roleType = role.equals("mentor");
+        try (Connection connection = getConnection(scx)) {
+            UserDao userDao = new DatabaseUserDao(connection);
+            if (actualUser.getPermission()) {
+                if (checkParams(req)) {
+                    int userId = Integer.parseInt(req.getParameter("id"));
+                    userServiceDB.editUser(req.getParameter("e-mail"), req.getParameter("password"), roleType, userId, userDao);
+                    resp.sendRedirect("users");
                 }
-                int userId = Integer.parseInt(req.getParameter("id"));
-                userServiceImpl.editUser(userId, req.getParameter("e-mail"), req.getParameter("password"), roletype);
-                resp.sendRedirect("users");
+            } else {
+                if (checkParams(req)) {
+                    int id = actualUser.getId();
+                    userServiceDB.editUser(req.getParameter("e-mail"), req.getParameter("password"), roleType, id, userDao);
+                    resp.sendRedirect("users");
+                }
             }
-        } else {
-            if (checkParams(req)) {
-                int id = actualUser.getId();
-                userServiceImpl.editUser(id, req.getParameter("e-mail"), req.getParameter("password"), false);
-                resp.sendRedirect("users");
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User actualUser = (User) req.getSession().getAttribute("user");
-        User profile = (User) req.getSession().getAttribute("temp");
-
-        List<User> listOfUsers = DataContainer.getInstance().getUsersList();
-        if (actualUser.getName() != null) {
-            for (User userList : listOfUsers) {
-                if (userList.getName().equals(actualUser.getName())) {
-                    req.setAttribute("user", actualUser);
-                    req.getRequestDispatcher("edituser.jsp").forward(req, resp);
+        ServletContext scx = req.getServletContext();
+        try (Connection connection = getConnection(scx)) {
+            UserDao userDao = new DatabaseUserDao(connection);
+            UserServiceDB userServiceDB = new UserServiceDB();
+            List<User> listOfUsers = userServiceDB.getUsers(userDao);
+            if (actualUser.getName() != null) {
+                for (User userList : listOfUsers) {
+                    if (userList.getName().equals(actualUser.getName())) {
+                        req.setAttribute("user", actualUser);
+                        req.getRequestDispatcher("edituser.jsp").forward(req, resp);
+                    }
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
