@@ -68,19 +68,22 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
     }
 
     public Course findCourseByName(String name) throws SQLException {
+        Course result = null;
         if (name == null || "".equals(name)) {
             throw new IllegalArgumentException("title cannot be null or empty");
         }
-        String sql = "SELECT * FROM users WHERE name = ?";
+        String sql = "select * from courses\n" +
+                "where name = ?;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, name);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    return fetchCourse(resultSet);
+                    result = fetchCourse(resultSet);
                 }
+
             }
         }
-        return null;
+        return result;
     }
 
     public void addCourse(String name, String description) throws SQLException {
@@ -127,11 +130,11 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
                 "SET name = ?, description = ?, is_active = ?" +
                 "WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
-            statement.setInt(1, id);
-            statement.setString(2, name);
-            statement.setString(3, description);
-            statement.setBoolean(4, isActive);
-            statement.executeUpdate(sql);
+            statement.setInt(4, id);
+            statement.setString(1, name);
+            statement.setString(2, description);
+            statement.setBoolean(3, isActive);
+            statement.executeUpdate();
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
