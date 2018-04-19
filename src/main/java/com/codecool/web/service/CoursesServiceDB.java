@@ -1,7 +1,6 @@
 package com.codecool.web.service;
 
 import com.codecool.web.dao.CourseDao;
-import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.Course;
 
 import java.sql.SQLException;
@@ -38,9 +37,9 @@ public class CoursesServiceDB {
         courseDao.remove(id);
     }
 
-    //TODO It uses the editCourse method until the editAssignment method will be implemented
+
     void editAssignment(int id, String title,String desc,int newMaxPt, boolean activity, String submission, CourseDao courseDao) throws SQLException {
-        courseDao.editCourse(id,title,desc,activity);
+        courseDao.editAssignment(id,title,desc,newMaxPt);
     }
 }
 
