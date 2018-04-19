@@ -2,6 +2,7 @@ package com.codecool.web.service;
 
 import com.codecool.web.dao.CourseDao;
 import com.codecool.web.dao.UserDao;
+import com.codecool.web.model.Assignment;
 import com.codecool.web.model.Course;
 
 import java.sql.SQLException;
@@ -16,10 +17,6 @@ public class CoursesServiceDB {
 
     void addNewCourse(String title, String description, CourseDao courseDao) throws SQLException {
         courseDao.addCourse(title,description);
-    }
-
-    void addNewAssignment(String title, String description, int maxPoints, CourseDao courseDao) throws SQLException {
-        courseDao.addAssignment(title,description,maxPoints);
     }
 
     void editCourse(int id, String title,String desc, boolean activity, CourseDao courseDao) throws SQLException {
@@ -40,6 +37,22 @@ public class CoursesServiceDB {
     
     void editAssignment(int id, String title,String desc,int newMaxPt, CourseDao courseDao) throws SQLException {
         courseDao.editAssignment(id,title,desc,newMaxPt);
+    }
+
+    void addNewAssignment(String title, String description, int maxPoints, CourseDao courseDao) throws SQLException {
+        courseDao.addAssignment(title,description,maxPoints);
+    }
+
+    void removeAssignment(int id, CourseDao courseDao) throws SQLException {
+        courseDao.removeAssignment(id);
+    }
+
+    Assignment getAssignment(int assignmentid, CourseDao courseDao) throws SQLException {
+        return courseDao.findAssignmentById(assignmentid);
+    }
+
+    List<Assignment> availableAssignments(CourseDao courseDao) throws SQLException {
+        return courseDao.findAllAssignment();
     }
 }
 
