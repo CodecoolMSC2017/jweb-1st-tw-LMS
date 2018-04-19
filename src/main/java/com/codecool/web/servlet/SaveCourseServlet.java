@@ -18,9 +18,9 @@ import java.sql.SQLException;
 
 
 @WebServlet("/savecourse")
-public class SaveCourseServlet extends AbstractServlet{
+public class SaveCourseServlet extends AbstractServlet {
     public boolean checkParams(HttpServletRequest req) {
-        return req.getParameter("title") !=null && req.getParameter("description") !=null &&
+        return req.getParameter("title") != null && req.getParameter("description") != null &&
                 !req.getParameter("description").equals("") && !req.getParameter("title").equals("");
     }
 
@@ -30,10 +30,10 @@ public class SaveCourseServlet extends AbstractServlet{
             CoursesServiceDB coursesServiceDB = new CoursesServiceDB();
             CourseDao courseDao = new DatabaseCourseDao(connection);
             if (checkParams(req)) {
+                Course oldCourse = (Course) req.getSession().getAttribute("course");
 
-                String title = req.getParameter("title");
-                Course oldCourse = coursesServiceDB.getCourseByName(title, courseDao);
-                coursesServiceDB.editCourse(oldCourse.getId(),req.getParameter("title"), req.getParameter("description"), oldCourse.getIsActive(), courseDao);
+                coursesServiceDB.editCourse(oldCourse.getId(), req.getParameter("title"), req.getParameter("description"), oldCourse.getIsActive(), courseDao);
+
                 resp.sendRedirect("courses");
                 //req.getRequestDispatcher("courses.jsp").forward(req, resp);
             }

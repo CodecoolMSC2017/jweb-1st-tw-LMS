@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name= "courses",urlPatterns="/courses")
+@WebServlet(name = "courses", urlPatterns = "/courses")
 public class CoursesServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext scx = req.getServletContext();
@@ -58,6 +58,7 @@ public class CoursesServlet extends AbstractServlet {
                     req.getRequestDispatcher("course.jsp").forward(req, resp);
                 } else if (mode.equals("new") || mode.equals("edit")) {
                     req.setAttribute("mode", mode);
+                    req.getSession().setAttribute("course", coursesServiceDB.getCourse(courseid, courseDao));
                     req.getRequestDispatcher("edit.jsp").forward(req, resp);
                 } else if (mode.equals("delete")) {
                     coursesServiceDB.removeCourse(courseid, courseDao);
@@ -69,8 +70,8 @@ public class CoursesServlet extends AbstractServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            req.getRequestDispatcher("courses.jsp").forward(req, resp);
         }
+        req.getRequestDispatcher("courses.jsp").forward(req, resp);
+
     }
 }
