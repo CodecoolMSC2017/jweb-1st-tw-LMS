@@ -16,5 +16,5 @@ public interface UserDao {
 
     User registerUser (String name, String email, String password, boolean permission) throws SQLException;
 
-    void editUser(String email, String password, int id) throws SQLException;
+    void editUser(String email, String password, Boolean permission, int id) throws SQLException;
 }

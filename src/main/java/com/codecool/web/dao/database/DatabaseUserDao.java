@@ -95,17 +95,18 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
         }
     }
 
-    public void editUser(String email, String password, int id) throws SQLException {
+    public void editUser(String email, String password, Boolean permission, int id) throws SQLException {
         if (email == null || "".equals(email) || password == null || "".equals(password)) {
             throw new IllegalArgumentException("Fields can not be empty");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "UPDATE users SET email = ?, password = ? WHERE id = ?";
+        String sql = "UPDATE users SET email = ?, password = ?, permission = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setString(1, email);
             statement.setString(2, password);
-            statement.setInt(3, id);
+            statement.setBoolean(3, permission);
+            statement.setInt(4, id);
             executeInsert(statement);
             connection.commit();
         } catch (SQLException ex) {
