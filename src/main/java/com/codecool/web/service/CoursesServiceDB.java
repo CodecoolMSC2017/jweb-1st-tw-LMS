@@ -11,7 +11,7 @@ public class CoursesServiceDB {
 
 
     public List<Course> getCourses(CourseDao courseDao) throws SQLException {
-        return courseDao.findAll();
+        return courseDao.findAllCourse();
     }
 
     void addNewCourse(String title, String description, CourseDao courseDao) throws SQLException {
@@ -27,7 +27,7 @@ public class CoursesServiceDB {
     }
 
     Course getCourse(int courseId, CourseDao courseDao) throws SQLException {
-        return courseDao.findById(courseId);
+        return courseDao.findCourseById(courseId);
     }
 
     List<Course> availableCourses(CourseDao courseDao) {
@@ -35,12 +35,12 @@ public class CoursesServiceDB {
     }
 
     void removeCourse(int id, CourseDao courseDao) throws SQLException {
-        courseDao.remove(id);
+        courseDao.removeCourse(id);
     }
 
     //TODO It uses the editCourse method until the editAssignment method will be implemented
-    void editAssignment(int id, String title,String desc,int newMaxPt, boolean activity, String submission, CourseDao courseDao) throws SQLException {
-        courseDao.editCourse(id,title,desc,activity);
+    void editAssignment(int id, String title,String desc,int newMaxPt, CourseDao courseDao) throws SQLException {
+        courseDao.editAssignment(id,title,desc,newMaxPt);
     }
 }
 
