@@ -20,7 +20,7 @@ CREATE TABLE courses (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
 	description TEXT NOT NULL,
-	is_active BOOLEAN,
+	is_active BOOLEAN DEFAULT FALSE,
 	CONSTRAINT name_not_empty CHECK (name <> ''),
 	CONSTRAINT description_not_empty CHECK(description <> '')
 
