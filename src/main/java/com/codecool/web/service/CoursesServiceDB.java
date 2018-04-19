@@ -37,8 +37,7 @@ public class CoursesServiceDB {
     void removeCourse(int id, CourseDao courseDao) throws SQLException {
         courseDao.removeCourse(id);
     }
-
-    //TODO It uses the editCourse method until the editAssignment method will be implemented
+    
     void editAssignment(int id, String title,String desc,int newMaxPt, CourseDao courseDao) throws SQLException {
         courseDao.editAssignment(id,title,desc,newMaxPt);
     }
