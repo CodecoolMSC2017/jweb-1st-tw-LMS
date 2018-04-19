@@ -17,10 +17,11 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
     public void setActivity(int id, boolean isActive) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "UPDATE courses " +
-                "SET is_active = ?" +  "WHERE id = ?";
+        String sql = "UPDATE courses SET is_active = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
-            statement.setBoolean(4, isActive);
+            statement.setBoolean(1, isActive);
+            statement.setInt(2,id);
+            statement.executeUpdate(sql);
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
