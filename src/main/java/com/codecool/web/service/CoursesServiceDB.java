@@ -66,7 +66,12 @@ public class CoursesServiceDB {
         return result;
     }
 
-    public void setPublicity(int id, boolean isActive, CourseDao courseDao) throws  SQLException {
+    public void setPublicity(int id, CourseDao courseDao) throws  SQLException {
+        Course course = courseDao.findCourseById(id);
+        boolean isActive = true;
+        if(course.getIsActive()) {
+            isActive = false;
+        }
         courseDao.setActivity(id, isActive);
     }
 }
