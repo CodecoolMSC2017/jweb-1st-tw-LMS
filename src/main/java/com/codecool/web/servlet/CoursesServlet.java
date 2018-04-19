@@ -58,7 +58,6 @@ public class CoursesServlet extends AbstractServlet {
                     req.getRequestDispatcher("course.jsp").forward(req, resp);
                 } else if (mode.equals("new") || mode.equals("edit")) {
                     req.setAttribute("mode", mode);
-                    req.setAttribute("course", coursesServiceDB.getCourse(courseid, courseDao));
                     req.getRequestDispatcher("edit.jsp").forward(req, resp);
                 } else if (mode.equals("delete")) {
                     coursesServiceDB.removeCourse(courseid, courseDao);
