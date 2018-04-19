@@ -67,6 +67,22 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
         return null;
     }
 
+    public Course findCourseByName(String name) throws SQLException {
+        if (name == null || "".equals(name)) {
+            throw new IllegalArgumentException("title cannot be null or empty");
+        }
+        String sql = "SELECT * FROM users WHERE name = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, name);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return fetchCourse(resultSet);
+                }
+            }
+        }
+        return null;
+    }
+
     public void addCourse(String name, String description) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);

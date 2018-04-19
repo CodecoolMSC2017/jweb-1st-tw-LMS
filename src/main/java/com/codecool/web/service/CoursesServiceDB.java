@@ -76,5 +76,9 @@ public class CoursesServiceDB {
         }
         courseDao.setActivity(id, isActive);
     }
+
+    public Course getCourseByName(String name, CourseDao courseDao) throws SQLException {
+        return courseDao.findCourseByName(name);
+    }
 }
 

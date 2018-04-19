@@ -30,4 +30,6 @@ public interface CourseDao {
 
     void setActivity(int id, boolean isActive) throws SQLException ;
 
+    Course findCourseByName(String name) throws SQLException ;
+
 }
