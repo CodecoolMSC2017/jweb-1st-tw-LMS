@@ -6,6 +6,7 @@ import com.codecool.web.model.Assignment;
 import com.codecool.web.model.Course;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoursesServiceDB {
@@ -15,44 +16,58 @@ public class CoursesServiceDB {
         return courseDao.findAllCourse();
     }
 
-    void addNewCourse(String title, String description, CourseDao courseDao) throws SQLException {
+    public void addNewCourse(String title, String description, CourseDao courseDao) throws SQLException {
         courseDao.addCourse(title,description);
     }
 
-    void editCourse(int id, String title,String desc, boolean activity, CourseDao courseDao) throws SQLException {
+    public void editCourse(int id, String title,String desc, boolean activity, CourseDao courseDao) throws SQLException {
         courseDao.editCourse(id,title,desc,activity);
     }
 
-    Course getCourse(int courseId, CourseDao courseDao) throws SQLException {
+    public Course getCourse(int courseId, CourseDao courseDao) throws SQLException {
         return courseDao.findCourseById(courseId);
     }
 
-    List<Course> availableCourses(CourseDao courseDao) {
+    public List<Course> availableCourses(CourseDao courseDao) {
         return null;
     }
 
-    void removeCourse(int id, CourseDao courseDao) throws SQLException {
+    public void removeCourse(int id, CourseDao courseDao) throws SQLException {
         courseDao.removeCourse(id);
     }
     
-    void editAssignment(int id, String title,String desc,int newMaxPt, CourseDao courseDao) throws SQLException {
+    public void editAssignment(int id, String title,String desc,int newMaxPt, CourseDao courseDao) throws SQLException {
         courseDao.editAssignment(id,title,desc,newMaxPt);
     }
 
-    void addNewAssignment(String title, String description, int maxPoints, CourseDao courseDao) throws SQLException {
+    public void addNewAssignment(String title, String description, int maxPoints, CourseDao courseDao) throws SQLException {
         courseDao.addAssignment(title,description,maxPoints);
     }
 
-    void removeAssignment(int id, CourseDao courseDao) throws SQLException {
+    public void removeAssignment(int id, CourseDao courseDao) throws SQLException {
         courseDao.removeAssignment(id);
     }
 
-    Assignment getAssignment(int assignmentid, CourseDao courseDao) throws SQLException {
+    public Assignment getAssignment(int assignmentid, CourseDao courseDao) throws SQLException {
         return courseDao.findAssignmentById(assignmentid);
     }
 
-    List<Assignment> availableAssignments(CourseDao courseDao) throws SQLException {
+    public List<Assignment> availableAssignments(CourseDao courseDao) throws SQLException {
         return courseDao.findAllAssignment();
+    }
+
+    public List<Course> availableCourses(List<Course> courses) {
+        List<Course> result = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.getIsActive()) {
+                result.add(course);
+            }
+        }
+        return result;
+    }
+
+    public void setPublicity(int id, boolean isActive, CourseDao courseDao) throws  SQLException {
+        courseDao.setActivity(id, isActive);
     }
 }
 
