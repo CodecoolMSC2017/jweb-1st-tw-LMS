@@ -92,7 +92,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
         String sql = "DELETE FROM courses WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setInt(1, id);
-            executeInsert(statement);
+            statement.executeUpdate(sql);
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
@@ -104,6 +104,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
 
     public void editCourse(int id, String name, String description, boolean isActive) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
+
         connection.setAutoCommit(false);
         String sql = "UPDATE courses " +
                 "SET name = ?, description = ?, is_active = ?" +
@@ -113,6 +114,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
             statement.setString(2, name);
             statement.setString(3, description);
             statement.setBoolean(4, isActive);
+            statement.executeUpdate(sql);
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
@@ -122,15 +124,32 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
         }
     }
 
+    public int getId(String name) throws SQLException {
+        int id = 0;
+        String sql = "select id from courses\n" +
+                "where courses.name= ?";
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, name);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                id = resultSet.getInt("id");
+            }
+        }
+        return id;
+    }
+
     public void addAssignment(String name, String description, int maxPoint) throws SQLException {
+        addCourse(name, description);
+
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO assignments (name, description, maxpoint) VALUES (?, ?, ?)";
+        String sql ="INSERT INTO assignments (course_id, maxpoints) VALUES (?,?)";
+
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
-            statement.setString(1, name);
-            statement.setString(2, description);
-            statement.setInt(3, maxPoint);
             int id = fetchGeneratedId(statement);
+            statement.setInt(1, getId(name));
+            statement.setInt(1,maxPoint);
+            executeInsert(statement);
+
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
@@ -151,6 +170,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
             statement.setString(2, name);
             statement.setString(3, description);
             statement.setInt(4, maxPoint);
+            statement.executeUpdate(sql);
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
@@ -168,6 +188,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
                 "DELETE FROM courses WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setInt(1, id);
+            statement.executeUpdate(sql);
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();

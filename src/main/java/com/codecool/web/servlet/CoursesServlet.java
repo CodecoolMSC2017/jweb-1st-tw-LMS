@@ -66,9 +66,11 @@ public class CoursesServlet extends AbstractServlet {
                 }
             }
             req.setAttribute("courses", courseList);
-            req.getRequestDispatcher("courses.jsp").forward(req, resp);
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            req.getRequestDispatcher("courses.jsp").forward(req, resp);
         }
     }
 }
