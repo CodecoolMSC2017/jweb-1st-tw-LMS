@@ -28,7 +28,7 @@
         <div class="container">
             <ul class="list">
                 <h2>Assignment</h2>
-                <c:set var = "temp" scope = "session" value = "${assignment}"/>
+                <c:set var = "temp" scope = "session" value = "${course}"/>
                 <li>Assignment name: <c:out value="${temp.name}"/></li>
                 <li>Assignment description: <c:out value="${temp.desc}"/></li>
                 <li>Assignment max points: <c:out value="${temp.maxPoints}"/></li>

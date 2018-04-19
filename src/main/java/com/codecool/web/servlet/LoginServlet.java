@@ -28,7 +28,7 @@ public class LoginServlet extends AbstractServlet {
     }
 
 
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             UserDao userDao = new DatabaseUserDao(connection);
             LoginServiceImpl loginService = new LoginServiceImpl(userDao);
@@ -43,9 +43,7 @@ public class LoginServlet extends AbstractServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (LoginException e) {
-            req.setAttribute("message",e.getMessage());
+            System.out.println("Invalid login");
         }
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
-
     }
 }
