@@ -21,7 +21,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setBoolean(1, isActive);
             statement.setInt(2,id);
-            statement.executeUpdate(sql);
+            statement.executeUpdate();
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
@@ -112,7 +112,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
         String sql = "DELETE FROM courses WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setInt(1, id);
-            statement.executeUpdate(sql);
+            statement.executeUpdate();
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
@@ -190,7 +190,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
             statement.setString(2, name);
             statement.setString(3, description);
             statement.setInt(4, maxPoint);
-            statement.executeUpdate(sql);
+            statement.executeUpdate();
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
@@ -208,7 +208,7 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
                 "DELETE FROM courses WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setInt(1, id);
-            statement.executeUpdate(sql);
+            statement.executeUpdate();
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
