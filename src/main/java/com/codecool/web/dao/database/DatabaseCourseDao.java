@@ -52,9 +52,6 @@ public class DatabaseCourseDao extends AbstractDao implements CourseDao{
     }
 
     public Course findCourseById(int id) throws SQLException {
-        if(id == 0) {
-            throw new IllegalArgumentException();
-        }
         String sql = "SELECT * from courses WHERE id = ?";
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
